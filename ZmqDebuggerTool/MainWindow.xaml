@@ -6,6 +6,8 @@
         xmlns:view="clr-namespace:ZmqDebuggerTool.View"
         xmlns:local="clr-namespace:ZmqDebuggerTool"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        ShowInTaskbar="True"
         Title="Zmq调试工具" Height="600" Width="900" Loaded="Window_Loaded">
     <TabControl Margin="10">
         <TabItem Header="Zmq Request">

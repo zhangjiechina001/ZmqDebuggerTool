@@ -38,7 +38,6 @@ namespace ZmqDebuggerTool.View
                 {
                     return;
                 }
-
                 txtRec.AppendText(result);
                 txtRec.AppendText(Environment.NewLine);
                 if (txtRec.LineCount > 1000)

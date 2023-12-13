@@ -27,7 +27,6 @@ namespace ZmqDebuggerTool
             _configuration = configuration;
         }
 
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             zmqView.Configuration= _configuration;
