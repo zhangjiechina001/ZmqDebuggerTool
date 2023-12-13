@@ -53,8 +53,7 @@
                 Height="21"
                 VerticalAlignment="Center"
                 VerticalContentAlignment="Center"
-                Margin="0,0,0,0"
-                Click="btnConnect_Click">
+                Margin="0,0,0,0">
                 </Button>
             </Grid>
         </GroupBox>
@@ -92,7 +91,7 @@
                 <TextBox x:Name="txtSend" Grid.Row="0" Margin="5,5,5,5" Grid.ColumnSpan="5" Text="{Binding SendMsg,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <RadioButton Content="Text" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="1"/>
                 <RadioButton Content="Hex" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="2"/>
-                <ComboBox x:Name="cmbCmds" Grid.Row="1" Margin="0,0,5,0" Width="200" Height="21" HorizontalAlignment="Right" SelectionChanged="cmbCmds_SelectionChanged"/>
+                <ComboBox x:Name="cmbCmds" Grid.Row="1" Margin="0,0,5,0" Width="200" Height="21" HorizontalAlignment="Right" SelectionChanged="cmbCmds_SelectionChanged" ItemsSource="{Binding OrderItems}" DisplayMemberPath="Title"/>
                 <Button x:Name="btnSend" HorizontalAlignment="Center"  Content="发送" Grid.Row="1" Grid.Column="4"  Width="80" Height="21" Command="{Binding SendCommand}"/>
                 
                 

@@ -1,19 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TcpUdpTool.ViewModel.Base;
+using ZmqDebuggerTool.Communication;
+using ZmqDebuggerTool.Config;
 using ZmqDebuggerTool.ViewModel.Base;
 
 namespace ZmqDebuggerTool.ViewModel
 {
     public class ZmqPublisherViewModel : ObservableObject
     {
+        ZmqBase _zmq=new ZmqBase();
+
         public ZmqPublisherViewModel()
         {
-
+            OrderItems = new ObservableCollection<OrderItem>() 
+            {
+                new OrderItem("cmd1","12345"),
+                new OrderItem("cmd2","23456")
+            };
         }
 
         private string _address= "tcp://*:3000";
@@ -40,12 +49,20 @@ namespace ZmqDebuggerTool.ViewModel
 
         public void Connect()
         {
-
+            _zmq.BindOrConnect(_address);
         }
 
         public void Send()
         {
-
+            if(TextSlected)
+            {
+                _zmq.SendString(_sendMsg);
+            }
+            else if(HexSlected)
+            {
+                byte[] data=_sendMsg.Split(" ").Select(t=>byte.Parse(t)).ToArray();
+                _zmq.SendBytes(data);
+            }
         }
 
         #region public Commands
@@ -75,6 +92,8 @@ namespace ZmqDebuggerTool.ViewModel
         public bool TextSlected { get; set; }
 
         public bool HexSlected { get; set; }
+
+        public ObservableCollection<OrderItem> OrderItems { get; set; }
         #endregion
     }
 }

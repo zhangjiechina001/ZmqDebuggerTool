@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ZmqDebuggerTool.Communication
 {
-    public class ZmqPublisher
+    public class ZmqPublisher : ZmqBase
     {
         public event Action<byte[]>? OnDataReceive;
 
@@ -41,6 +41,21 @@ namespace ZmqDebuggerTool.Communication
             _subSocket = new PublisherSocket();
             _subSocket.Bind(address);
             _address = address;
+        }
+
+        public override void BindOrConnect(string address)
+        {
+            base.BindOrConnect(address);
+        }
+
+        public override void SendBytes(byte[] data)
+        {
+            base.SendBytes(data);
+        }
+
+        public override void SendString(string data)
+        {
+            base.SendString(data);
         }
 
         public string? Address => _address;
