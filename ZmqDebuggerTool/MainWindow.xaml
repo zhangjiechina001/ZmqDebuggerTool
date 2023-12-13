@@ -14,6 +14,9 @@
         <TabItem Header="Zmq Subscribe">
             <view:ZmqSubscriberView x:Name="zmqSubView"/>
         </TabItem>
+        <TabItem Header="Zmq Publish">
+            <view:ZmqPublisherView x:Name="zmqPub"/>
+        </TabItem>
     </TabControl>
     
 </Window>

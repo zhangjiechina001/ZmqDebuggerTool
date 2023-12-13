@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ZmqDebuggerTool.Communication;
+using ZmqDebuggerTool.Utils;
 
 namespace ZmqDebuggerTool.View
 {
@@ -31,14 +32,17 @@ namespace ZmqDebuggerTool.View
 
         private void ZmqSubscriber_OnDataReceive(byte[] obj)
         {
-            string result = Encoding.UTF8.GetString(obj);
             Dispatcher.Invoke(new Action(() =>
             {
-                if(chbSubscriber.IsChecked == false)
+                if (chbSubscriber.IsChecked == false)
                 {
                     return;
                 }
-
+                if (chbCompress.IsChecked == true)
+                {
+                    obj = ZlibUtils.UnCompressWrap(obj);
+                }
+                string result = string.Join(" ", obj);
                 txtRec.AppendText(result);
                 txtRec.AppendText(Environment.NewLine);
                 if (txtRec.LineCount > 1000)
@@ -53,6 +57,7 @@ namespace ZmqDebuggerTool.View
         private void btnConnect_Click(object sender, RoutedEventArgs e)
         {
             _zmqSubscriber.ReInit(txtAddress.Text);
+            btnConnect.IsEnabled = false;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -68,6 +73,11 @@ namespace ZmqDebuggerTool.View
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void txtAddress_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            btnConnect.IsEnabled = true;
         }
     }
 }
