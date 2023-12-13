@@ -15,7 +15,7 @@
             <view:ZmqSubscriberView x:Name="zmqSubView"/>
         </TabItem>
         <TabItem Header="Zmq Publish">
-            <view:ZmqPublisherView x:Name="zmqPub"/>
+            <view:ZmqPublisherView x:Name="zmqPub" DataContext="{Binding PublishModel}"/>
         </TabItem>
     </TabControl>
     

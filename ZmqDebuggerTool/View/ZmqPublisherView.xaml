@@ -10,8 +10,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
 
@@ -41,11 +41,11 @@
                 Grid.ColumnSpan="1"
                 Margin="5,0,5,0"
                 Height="21"
-                Text="tcp://*:2000"
+                Text="{Binding Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 VerticalAlignment="Center"
                 VerticalContentAlignment="Center"/>
 
-                <Button Grid.Row="0"
+                <Button Grid.Row="0" Command="{Binding ConnectCommand}"
                 x:Name="btnConnect"
                 Content="绑定"
                 Grid.Column="2"
@@ -59,22 +59,43 @@
             </Grid>
         </GroupBox>
         <GroupBox Header="接收:" Grid.Row="1">
-            <TextBox x:Name="txtRec" Grid.Row="2" Margin="5,5,5,5"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="26"/>
+                </Grid.RowDefinitions>
+
+                <TextBox x:Name="txtRec" Margin="0,0,0,0"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"/>
+                <RadioButton Content="Text" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="0" IsChecked="{Binding TextSlected}"/>
+                <RadioButton Content="Hex" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="1" IsChecked="{Binding TextSlected}"/>
+                <Button Content="clear" HorizontalAlignment="Right" VerticalAlignment="Center" Width="80" Height="21" Grid.Row="1" Grid.Column="3"/>
+            </Grid>
         </GroupBox>
+
         <GroupBox Header="发送:" Grid.Row="2">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
                     <RowDefinition Height="1*"/>
+                    <RowDefinition Height="26"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
                     <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
-                <ComboBox x:Name="cmbCmds" Margin="5,5,5,5" Width="200" Height="21" HorizontalAlignment="Right" SelectionChanged="cmbCmds_SelectionChanged"/>
-
-                <Button x:Name="btnSend" HorizontalAlignment="Center"  Content="发送" Grid.Row="0" Grid.Column="1"  Margin="0,5,0,5" Width="80" Height="21" Click="btnSend_Click"/>
-                <TextBox x:Name="txtSend" Grid.Row="1" Margin="5,5,5,5" Grid.ColumnSpan="2"/>
+                <TextBox x:Name="txtSend" Grid.Row="0" Margin="5,5,5,5" Grid.ColumnSpan="5" Text="{Binding SendMsg,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <RadioButton Content="Text" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="1"/>
+                <RadioButton Content="Hex" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="2"/>
+                <ComboBox x:Name="cmbCmds" Grid.Row="1" Margin="0,0,5,0" Width="200" Height="21" HorizontalAlignment="Right" SelectionChanged="cmbCmds_SelectionChanged"/>
+                <Button x:Name="btnSend" HorizontalAlignment="Center"  Content="发送" Grid.Row="1" Grid.Column="4"  Width="80" Height="21" Command="{Binding SendCommand}"/>
+                
+                
             </Grid>
 
         </GroupBox>
