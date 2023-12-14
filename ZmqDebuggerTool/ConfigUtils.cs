@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -47,15 +46,6 @@ namespace ZmqDebuggerTool
             {
                 Console.WriteLine("Error writing app settings");
             }
-        }
-
-        public static IConfigurationRoot GetConfigurationManager()
-        {
-            IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("appsettings.json", false, true);
-            IConfigurationRoot root = builder.Build();
-            root.GetSection("abc").Get<string>();
-            root["123"] = "abc";
-            return root;
         }
     }
 }

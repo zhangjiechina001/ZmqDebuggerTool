@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System.Data;
 using System.Windows;
 using System.Windows.Navigation;
@@ -44,13 +43,6 @@ namespace ZmqDebuggerTool
                 .AddSingleton<MainWindow>()
                 .AddSingleton<JsonConfig>();
             return serviceCollection.BuildServiceProvider();
-        }
-
-        private static IConfiguration CreateConfiguration()
-        {
-            IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("appsettings.json", false, false);
-            IConfigurationRoot root = builder.Build();
-            return root;
         }
     }
 
