@@ -28,15 +28,15 @@ namespace ZmqDebuggerTool.View
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            txtAddress.Text = Configuration.GetSectionString("RequestAddress");
+            //txtAddress.Text = Configuration.GetSectionString("RequestAddress");
 
-            var obj = Configuration.GetSectionObj("Commands");
-            _obj = obj;
-            cmbCmds.Items.Clear();
-            foreach (var item in obj)
-            {
-                cmbCmds.Items.Add(item.Key);
-            }
+            //var obj = Configuration.GetSectionObj("Commands");
+            //_obj = obj;
+            //cmbCmds.Items.Clear();
+            //foreach (var item in obj)
+            //{
+            //    cmbCmds.Items.Add(item.Key);
+            //}
         }
 
         private void cmbCmds_SelectionChanged(object sender, SelectionChangedEventArgs e)
