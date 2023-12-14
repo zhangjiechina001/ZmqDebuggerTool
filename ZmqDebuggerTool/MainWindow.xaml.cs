@@ -28,18 +28,24 @@ namespace ZmqDebuggerTool
             InitializeComponent();
             _configuration = configuration;
             var items = OrderItem.Parse(configuration.GetSectionToken("PublishOrders"));
-            PublishModel = new ZmqPublisherViewModel(items);
-            DataContext = this;
+            PublishModel = new ZmqViewModel(items,new ZmqPublisher());
+            PublishModel.Address = configuration.GetSectionString("PublisherAddress");
 
-            
+            var items1 = OrderItem.Parse(configuration.GetSectionToken("RequestOrders"));
+            SubscriberModel=new ZmqViewModel(items1,new ZmqSubscriber());
+            SubscriberModel.Address = configuration.GetSectionString("SubscriberAddress");
+
+            DataContext = this;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             zmqView.Configuration= _configuration;
-            zmqSubView.Configuration= _configuration;
+            //zmqSubView.Configuration= _configuration;
         }
 
-        public ZmqPublisherViewModel PublishModel { get; set; }
+        public ZmqViewModel PublishModel { get; set; }
+
+        public ZmqViewModel SubscriberModel { get; set; }
     }
 }

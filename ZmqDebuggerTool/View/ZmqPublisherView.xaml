@@ -72,8 +72,6 @@
                 </Grid.RowDefinitions>
 
                 <TextBox x:Name="txtRec" Margin="0,0,0,0"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"/>
-                <RadioButton Content="Text" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="0" IsChecked="{Binding TextSelected}"/>
-                <RadioButton Content="Hex" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="1" IsChecked="{Binding HexSelected}"/>
                 <Button Content="clear" HorizontalAlignment="Right" VerticalAlignment="Center" Width="80" Height="21" Grid.Row="1" Grid.Column="3"/>
             </Grid>
         </GroupBox>
@@ -91,8 +89,8 @@
                     <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
                 <TextBox x:Name="txtSend" Grid.Row="0" Margin="5,5,5,5" Grid.ColumnSpan="5" Text="{Binding SendMsg,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <RadioButton Content="Text" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="1"/>
-                <RadioButton Content="Hex" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="2"/>
+                <RadioButton Content="Text" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="1" IsChecked="{Binding TextSelected}"/>
+                <RadioButton Content="Hex" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="2" IsChecked="{Binding HexSelected}"/>
                 <ComboBox x:Name="cmbCmds" Grid.Row="1" Margin="0,0,5,0" Width="200" Height="21" HorizontalAlignment="Right" SelectionChanged="cmbCmds_SelectionChanged" ItemsSource="{Binding OrderItems}" DisplayMemberPath="Title"/>
                 <Button x:Name="btnSend" HorizontalAlignment="Center"  Content="发送" Grid.Row="1" Grid.Column="4"  Width="80" Height="21" Command="{Binding SendCommand}"/>
                 

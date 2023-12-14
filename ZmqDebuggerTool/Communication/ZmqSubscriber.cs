@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
+using System.Windows.Markup;
 using NetMQ;
 using NetMQ.Sockets;
 using ZmqDebuggerTool.Utils;
@@ -14,10 +15,8 @@ using ZmqDebuggerTool.Utils;
 
 namespace ZmqDebuggerTool.Communication
 {
-    public class ZmqSubscriber
+    public class ZmqSubscriber:ZmqBase
     {
-        public event Action<byte[]>? OnDataReceive;
-
         private SubscriberSocket? _subSocket;
         private string? _address;
         private ManualResetEvent _mutex =new ManualResetEvent(true);
@@ -35,8 +34,8 @@ namespace ZmqDebuggerTool.Communication
                         byte[] data;
                         if (_subSocket.TryReceiveFrameBytes(TimeSpan.FromMilliseconds(500),out data))
                         {
-                            
-                            OnDataReceive?.Invoke(data);
+                            DataReceived(data);
+                            //OnDataReceive?.Invoke(data);
                         }
                     }
                 }
@@ -54,6 +53,25 @@ namespace ZmqDebuggerTool.Communication
             _isIniting = false;
         }
 
-        public string? Address => _address;    
+        public override void BindOrConnect(string address)
+        {
+            _isIniting = true;
+            _subSocket?.Disconnect(_address);
+            _subSocket = new SubscriberSocket();
+            _subSocket.Connect(address);
+            _subSocket.SubscribeToAnyTopic();
+            _address = address;
+            _isIniting = false;
+        }
+
+        public override void SendBytes(byte[] data)
+        {
+            base.SendBytes(data);
+        }
+
+        public override void SendString(string data)
+        {
+            base.SendString(data);
+        }  
     }
 }

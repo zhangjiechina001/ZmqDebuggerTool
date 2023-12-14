@@ -8,7 +8,7 @@ namespace ZmqDebuggerTool.Communication
 {
     public class ZmqBase
     {
-        public event Action<byte[]>? OnDataReceive;
+        public event Action<byte[]>? OnDataReceived;
         protected string? _address;
 
         public ZmqBase() { }
@@ -23,5 +23,10 @@ namespace ZmqDebuggerTool.Communication
         
         public virtual void SendString(string data) 
         { }
+
+        protected void DataReceived(byte[] data)
+        {
+            OnDataReceived?.Invoke(data);
+        }
     }
 }

@@ -12,13 +12,15 @@ using ZmqDebuggerTool.ViewModel.Base;
 
 namespace ZmqDebuggerTool.ViewModel
 {
-    public class ZmqPublisherViewModel : ObservableObject
+    public class ZmqViewModel : ObservableObject
     {
-        ZmqBase _zmq=new ZmqPublisher();
+        private readonly ZmqBase _zmq;
 
-        public ZmqPublisherViewModel(List<OrderItem> orderItems)
+        public ZmqViewModel(List<OrderItem> orderItems,ZmqBase zmq)
         {
+            _zmq= zmq;
             OrderItems = new ObservableCollection<OrderItem>(orderItems);
+            HexSelected = true;
         }
 
         private string _address= "tcp://*:3000";

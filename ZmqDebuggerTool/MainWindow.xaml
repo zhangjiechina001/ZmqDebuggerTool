@@ -14,10 +14,13 @@
             <view:ZmqRequestView x:Name="zmqView"/>
         </TabItem>
         <TabItem Header="Zmq Subscribe">
-            <view:ZmqSubscriberView x:Name="zmqSubView"/>
+            <view:ZmqPublisherView x:Name="zmqSub" DataContext="{Binding SubscriberModel}"/>
         </TabItem>
         <TabItem Header="Zmq Publish">
             <view:ZmqPublisherView x:Name="zmqPub" DataContext="{Binding PublishModel}"/>
+        </TabItem>
+        <TabItem Header="Zlib Test">
+            <view:ZlibTestView x:Name="zlibTest"/>
         </TabItem>
     </TabControl>
     

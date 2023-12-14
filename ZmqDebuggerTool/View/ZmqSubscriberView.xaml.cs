@@ -28,7 +28,7 @@ namespace ZmqDebuggerTool.View
         public ZmqSubscriberView()
         {
             InitializeComponent();
-            _zmqSubscriber.OnDataReceive += ZmqSubscriber_OnDataReceive;
+            //_zmqSubscriber.OnDataReceive += ZmqSubscriber_OnDataReceive;
         }
 
         private void ZmqSubscriber_OnDataReceive(byte[] obj)
