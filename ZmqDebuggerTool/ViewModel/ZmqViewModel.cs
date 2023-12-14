@@ -23,6 +23,8 @@ namespace ZmqDebuggerTool.ViewModel
             HexSelected = true;
         }
 
+        public ZmqBase Zmq => _zmq;
+
         private string _address= "tcp://*:3000";
         public string Address 
         {
@@ -43,6 +45,12 @@ namespace ZmqDebuggerTool.ViewModel
                 _sendMsg = value;
                 OnPropertyChanged(nameof(SendMsg));
             }
+        }
+
+        string _receive = "";
+        public string ReceiveMessages
+        {
+            get { return _receive; }
         }
 
         public void Connect()

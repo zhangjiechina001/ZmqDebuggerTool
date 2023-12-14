@@ -33,24 +33,7 @@ namespace ZmqDebuggerTool.View
 
         private void ZmqSubscriber_OnDataReceive(byte[] obj)
         {
-            Dispatcher.Invoke(new Action(() =>
-            {
-                if (chbSubscriber.IsChecked == false)
-                {
-                    return;
-                }
-                if (chbCompress.IsChecked == true)
-                {
-                    obj = ZlibUtils.UnCompressWrap(obj);
-                }
-                string result = string.Join(" ", obj);
-                txtRec.AppendText(result);
-                txtRec.AppendText(Environment.NewLine);
-                if (txtRec.LineCount > 1000)
-                {
-                    txtRec.Clear();
-                }
-            }));
+
         }
 
         public JsonConfig Configuration { get; set; }
