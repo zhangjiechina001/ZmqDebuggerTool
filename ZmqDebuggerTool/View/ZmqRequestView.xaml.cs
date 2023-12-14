@@ -4,6 +4,7 @@ using System.Text.Json.Nodes;
 using System.Windows;
 using System.Windows.Controls;
 using ZmqDebuggerTool.Communication;
+using ZmqDebuggerTool.Config;
 
 namespace ZmqDebuggerTool.View
 {

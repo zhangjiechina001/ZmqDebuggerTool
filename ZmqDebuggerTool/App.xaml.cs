@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Data;
 using System.Windows;
 using System.Windows.Navigation;
+using ZmqDebuggerTool.Config;
 
 namespace ZmqDebuggerTool
 {

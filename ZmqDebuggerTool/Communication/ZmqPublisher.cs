@@ -1,9 +1,12 @@
 ﻿using NetMQ;
 using NetMQ.Sockets;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ZmqDebuggerTool.Communication
@@ -13,29 +16,12 @@ namespace ZmqDebuggerTool.Communication
         public event Action<byte[]>? OnDataReceive;
 
         private PublisherSocket? _subSocket;
-        private string? _address;
         private ManualResetEvent _mutex = new ManualResetEvent(true);
         public ZmqPublisher()
         {
         }
 
-        public void Publish(string content)
-        {
-            if (_subSocket != null)
-            {
-                _subSocket.SendFrame(content);
-            }
-        }
-
-        public void Publish(byte[] content)
-        {
-            if (_subSocket != null)
-            {
-                _subSocket.SendFrame(content);
-            }
-        }
-
-        public void ReInit(string address)
+        public override void BindOrConnect(string address)
         {
             _subSocket?.Disconnect(_address);
             _subSocket = new PublisherSocket();
@@ -43,19 +29,20 @@ namespace ZmqDebuggerTool.Communication
             _address = address;
         }
 
-        public override void BindOrConnect(string address)
-        {
-            base.BindOrConnect(address);
-        }
-
         public override void SendBytes(byte[] data)
         {
-            base.SendBytes(data);
+            if (_subSocket != null)
+            {
+                _subSocket.SendFrame(data);
+            }
         }
 
         public override void SendString(string data)
-        {
-            base.SendString(data);
+        {         
+            if (_subSocket != null)
+            {
+                _subSocket.SendFrame(data);
+            }
         }
 
         public string? Address => _address;

@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ZmqDebuggerTool.Communication;
+using ZmqDebuggerTool.Config;
 using ZmqDebuggerTool.ViewModel;
 
 namespace ZmqDebuggerTool
@@ -26,8 +27,11 @@ namespace ZmqDebuggerTool
         {
             InitializeComponent();
             _configuration = configuration;
-            PublishModel = new ZmqPublisherViewModel();
+            var items = OrderItem.Parse(configuration.GetSectionToken("PublishOrders"));
+            PublishModel = new ZmqPublisherViewModel(items);
             DataContext = this;
+
+            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

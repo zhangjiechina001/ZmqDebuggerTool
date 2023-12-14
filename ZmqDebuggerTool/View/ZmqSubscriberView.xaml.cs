@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ZmqDebuggerTool.Communication;
+using ZmqDebuggerTool.Config;
 using ZmqDebuggerTool.Utils;
 
 namespace ZmqDebuggerTool.View

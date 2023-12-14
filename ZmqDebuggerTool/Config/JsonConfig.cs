@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZmqDebuggerTool
+namespace ZmqDebuggerTool.Config
 {
     public class JsonConfig
     {
@@ -21,6 +21,12 @@ namespace ZmqDebuggerTool
         {
             var obj=_obj[key];
             return obj.ToObject<JObject>();
+        }
+
+        public JToken GetSectionToken(string key)
+        {
+            var obj = _obj[key];
+            return obj;
         }
 
         public string GetSectionString(string key)

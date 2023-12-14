@@ -43,7 +43,8 @@
                 Height="21"
                 Text="{Binding Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 VerticalAlignment="Center"
-                VerticalContentAlignment="Center"/>
+                VerticalContentAlignment="Center"
+                TextChanged="txtAddress_TextChanged"/>
 
                 <Button Grid.Row="0" Command="{Binding ConnectCommand}"
                 x:Name="btnConnect"
@@ -53,7 +54,8 @@
                 Height="21"
                 VerticalAlignment="Center"
                 VerticalContentAlignment="Center"
-                Margin="0,0,0,0">
+                Margin="0,0,0,0"
+                Click="btnConnect_Click">
                 </Button>
             </Grid>
         </GroupBox>
@@ -70,8 +72,8 @@
                 </Grid.RowDefinitions>
 
                 <TextBox x:Name="txtRec" Margin="0,0,0,0"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"/>
-                <RadioButton Content="Text" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="0" IsChecked="{Binding TextSlected}"/>
-                <RadioButton Content="Hex" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="1" IsChecked="{Binding TextSlected}"/>
+                <RadioButton Content="Text" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="0" IsChecked="{Binding TextSelected}"/>
+                <RadioButton Content="Hex" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="1" IsChecked="{Binding HexSelected}"/>
                 <Button Content="clear" HorizontalAlignment="Right" VerticalAlignment="Center" Width="80" Height="21" Grid.Row="1" Grid.Column="3"/>
             </Grid>
         </GroupBox>

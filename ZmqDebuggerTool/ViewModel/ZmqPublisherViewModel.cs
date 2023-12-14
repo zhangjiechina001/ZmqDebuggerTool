@@ -14,15 +14,11 @@ namespace ZmqDebuggerTool.ViewModel
 {
     public class ZmqPublisherViewModel : ObservableObject
     {
-        ZmqBase _zmq=new ZmqBase();
+        ZmqBase _zmq=new ZmqPublisher();
 
-        public ZmqPublisherViewModel()
+        public ZmqPublisherViewModel(List<OrderItem> orderItems)
         {
-            OrderItems = new ObservableCollection<OrderItem>() 
-            {
-                new OrderItem("cmd1","12345"),
-                new OrderItem("cmd2","23456")
-            };
+            OrderItems = new ObservableCollection<OrderItem>(orderItems);
         }
 
         private string _address= "tcp://*:3000";
@@ -54,11 +50,11 @@ namespace ZmqDebuggerTool.ViewModel
 
         public void Send()
         {
-            if(TextSlected)
+            if(TextSelected)
             {
                 _zmq.SendString(_sendMsg);
             }
-            else if(HexSlected)
+            else if(HexSelected)
             {
                 byte[] data=_sendMsg.Split(" ").Select(t=>byte.Parse(t)).ToArray();
                 _zmq.SendBytes(data);
@@ -84,14 +80,14 @@ namespace ZmqDebuggerTool.ViewModel
             {
                 return new DelegateCommand(() =>
                 {
-                    Connect();
+                    Send();
                 });
             }
         }
 
-        public bool TextSlected { get; set; }
+        public bool TextSelected { get; set; }
 
-        public bool HexSlected { get; set; }
+        public bool HexSelected { get; set; }
 
         public ObservableCollection<OrderItem> OrderItems { get; set; }
         #endregion
