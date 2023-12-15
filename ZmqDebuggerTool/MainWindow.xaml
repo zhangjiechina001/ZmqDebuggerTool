@@ -13,6 +13,9 @@
         <TabItem Header="Zmq Request">
             <view:ZmqView x:Name="viewReq"/>
         </TabItem>
+        <TabItem Header="Zmq Response">
+            <view:ZmqView x:Name="viewRes"/>
+        </TabItem>
         <TabItem Header="Zmq Subscribe">
             <view:ZmqView x:Name="viewSub"/>
         </TabItem>

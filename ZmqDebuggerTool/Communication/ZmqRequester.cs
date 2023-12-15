@@ -17,11 +17,6 @@ namespace ZmqDebuggerTool.Communication
         {
         }
 
-        public void ReInit(string address)
-        {
-
-        }
-
         public string Send(string content)
         {
             if(_reqSocket != null)

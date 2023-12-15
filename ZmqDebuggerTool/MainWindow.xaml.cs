@@ -29,7 +29,9 @@ namespace ZmqDebuggerTool
             _configuration = configuration;
 
             viewReq.SetDataContext(CreateModel<ZmqRequester>("RequestOrders", "RequestAddress"));
-            
+
+            viewRes.SetDataContext(CreateModel<ZmqResponse>("ResponseOrders", "ResponseAddress"));
+
             viewSub.SetDataContext(CreateModel<ZmqSubscriber>("PublishOrders", "SubscriberAddress"));
 
             viewPub.SetDataContext(CreateModel<ZmqPublisher>("PublishOrders", "PublisherAddress"));
