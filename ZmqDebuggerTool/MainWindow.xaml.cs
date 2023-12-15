@@ -25,6 +25,7 @@ namespace ZmqDebuggerTool
         public MainWindow(JsonConfig configuration)
         {
             InitializeComponent();
+
             _configuration = configuration;
 
             viewReq.SetDataContext(CreateModel<ZmqRequester>("RequestOrders", "RequestAddress"));
@@ -48,9 +49,5 @@ namespace ZmqDebuggerTool
         {
             //zmqSubView.Configuration= _configuration;
         }
-
-        public ZmqViewModel PublishModel { get; set; }
-
-        public ZmqViewModel SubscriberModel { get; set; }
     }
 }
