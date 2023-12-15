@@ -11,13 +11,13 @@
         Title="Zmq调试工具" Height="600" Width="900" Loaded="Window_Loaded">
     <TabControl Margin="10">
         <TabItem Header="Zmq Request">
-            <view:ZmqRequestView x:Name="zmqView"/>
+            <view:ZmqView x:Name="viewReq"/>
         </TabItem>
         <TabItem Header="Zmq Subscribe">
-            <view:ZmqPublisherView x:Name="zmqSub" DataContext="{Binding SubscriberModel}"/>
+            <view:ZmqView x:Name="viewSub"/>
         </TabItem>
         <TabItem Header="Zmq Publish">
-            <view:ZmqPublisherView x:Name="zmqPub" DataContext="{Binding PublishModel}"/>
+            <view:ZmqView x:Name="viewPub"/>
         </TabItem>
         <TabItem Header="Zlib Test">
             <view:ZlibTestView x:Name="zlibTest"/>

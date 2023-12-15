@@ -3,17 +3,15 @@ using NetMQ.Sockets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ZmqDebuggerTool.Communication
 {
-    class ZmqRequester
+    public class ZmqRequester:ZmqBase
     {
-        public event Action<byte[]>? OnDataReceive;
-
         private RequestSocket? _reqSocket;
-        private string? _address;
 
         public ZmqRequester()
         {
@@ -21,10 +19,7 @@ namespace ZmqDebuggerTool.Communication
 
         public void ReInit(string address)
         {
-            _address = address;
-            _reqSocket?.Dispose();
-            _reqSocket = new RequestSocket();
-            _reqSocket.Connect(address);
+
         }
 
         public string Send(string content)
@@ -35,6 +30,32 @@ namespace ZmqDebuggerTool.Communication
                 return _reqSocket.ReceiveFrameString();
             }
             return "_reqSocket is null";
+        }
+
+        public override void BindOrConnect(string address)
+        {
+            _address = address;
+            _reqSocket?.Dispose();
+            _reqSocket = new RequestSocket();
+            _reqSocket.Connect(address);
+        }
+
+        public override void SendBytes(byte[] data)
+        {
+            if (_reqSocket != null)
+            {
+                _reqSocket.SendFrame(data);
+                DataReceived(_reqSocket.ReceiveFrameBytes());
+            }
+        }
+
+        public override void SendString(string data)
+        {
+            if (_reqSocket != null)
+            {
+                _reqSocket.SendFrame(data);
+                DataReceived(_reqSocket.ReceiveFrameBytes());
+            }
         }
 
         public string? Address => _address;

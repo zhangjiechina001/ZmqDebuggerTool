@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using TcpUdpTool.ViewModel.Base;
 using ZmqDebuggerTool.Communication;
@@ -20,7 +21,7 @@ namespace ZmqDebuggerTool.ViewModel
         {
             _zmq= zmq;
             OrderItems = new ObservableCollection<OrderItem>(orderItems);
-            HexSelected = true;
+            TextSelected = true;
         }
 
         public ZmqBase Zmq => _zmq;
@@ -55,7 +56,14 @@ namespace ZmqDebuggerTool.ViewModel
 
         public void Connect()
         {
-            _zmq.BindOrConnect(_address);
+            try
+            {
+                _zmq.BindOrConnect(_address);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("错误", ex.Message);
+            }
         }
 
         public void Send()

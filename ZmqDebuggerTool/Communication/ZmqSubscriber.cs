@@ -35,7 +35,6 @@ namespace ZmqDebuggerTool.Communication
                         if (_subSocket.TryReceiveFrameBytes(TimeSpan.FromMilliseconds(500),out data))
                         {
                             DataReceived(data);
-                            //OnDataReceive?.Invoke(data);
                         }
                     }
                 }

@@ -26,20 +26,26 @@ namespace ZmqDebuggerTool
         {
             InitializeComponent();
             _configuration = configuration;
-            var items = OrderItem.Parse(configuration.GetSectionToken("PublishOrders"));
-            PublishModel = new ZmqViewModel(items,new ZmqPublisher());
-            PublishModel.Address = configuration.GetSectionString("PublisherAddress");
 
-            var items1 = OrderItem.Parse(configuration.GetSectionToken("RequestOrders"));
-            SubscriberModel=new ZmqViewModel(items1,new ZmqSubscriber());
-            SubscriberModel.Address = configuration.GetSectionString("SubscriberAddress");
+            viewReq.SetDataContext(CreateModel<ZmqRequester>("RequestOrders", "RequestAddress"));
+            
+            viewSub.SetDataContext(CreateModel<ZmqSubscriber>("PublishOrders", "SubscriberAddress"));
+
+            viewPub.SetDataContext(CreateModel<ZmqPublisher>("PublishOrders", "PublisherAddress"));
 
             DataContext = this;
         }
 
+        private ZmqViewModel CreateModel<T>(string orderKey,string addressKey) where T : new()
+        {
+            var orders = OrderItem.Parse(_configuration.GetSectionToken(orderKey));
+            var model = new ZmqViewModel(orders, ((new T()) as ZmqBase)!);
+            model.Address = _configuration.GetSectionString(addressKey);
+            return model;
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            zmqView.Configuration= _configuration;
             //zmqSubView.Configuration= _configuration;
         }
 
