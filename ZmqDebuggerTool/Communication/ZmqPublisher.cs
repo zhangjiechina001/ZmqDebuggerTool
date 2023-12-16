@@ -23,7 +23,7 @@ namespace ZmqDebuggerTool.Communication
 
         public override void BindOrConnect(string address)
         {
-            _subSocket?.Disconnect(_address);
+            _subSocket?.Disconnect(_address); 
             _subSocket = new PublisherSocket();
             _subSocket.Bind(address);
             _address = address;
