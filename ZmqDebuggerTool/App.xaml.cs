@@ -24,11 +24,6 @@ namespace ZmqDebuggerTool
         }
 
         /// <summary>
-        /// 获取当前 App 实例
-        /// </summary>
-        public new static App Current => (App)Application.Current;
-
-        /// <summary>
         /// 获取存放应用服务的容器
         /// </summary>
         public IServiceProvider ServiceProvider { get; }

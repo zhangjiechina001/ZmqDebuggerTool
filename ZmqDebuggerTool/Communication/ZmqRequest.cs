@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace ZmqDebuggerTool.Communication
 {
-    public class ZmqRequester:ZmqBase
+    public class ZmqRequest:ZmqBase
     {
         private RequestSocket? _reqSocket;
 
-        public ZmqRequester()
+        public ZmqRequest()
         {
         }
 
@@ -32,6 +32,7 @@ namespace ZmqDebuggerTool.Communication
             _address = address;
             _reqSocket?.Dispose();
             _reqSocket = new RequestSocket();
+            _reqSocket.ReceiveReady += _reqSocket_ReceiveReady;
             _reqSocket.Connect(address);
         }
 
@@ -40,7 +41,6 @@ namespace ZmqDebuggerTool.Communication
             if (_reqSocket != null)
             {
                 _reqSocket.SendFrame(data);
-                DataReceived(_reqSocket.ReceiveFrameBytes());
             }
         }
 
@@ -49,8 +49,22 @@ namespace ZmqDebuggerTool.Communication
             if (_reqSocket != null)
             {
                 _reqSocket.SendFrame(data);
-                DataReceived(_reqSocket.ReceiveFrameBytes());
+                byte[] rec;
+                if(_reqSocket.TryReceiveFrameBytes(TimeSpan.FromMilliseconds(2000),out rec))
+                {
+                    DataReceived(rec);
+                }
+                else
+                {
+                    string msg = "time out";
+                    DataReceived(Encoding.UTF8.GetBytes(msg));
+                }
             }
+        }
+
+        private void _reqSocket_ReceiveReady(object? sender, NetMQSocketEventArgs e)
+        {
+            DataReceived(_reqSocket.ReceiveFrameBytes());
         }
 
         public string? Address => _address;
