@@ -68,14 +68,21 @@ namespace ZmqDebuggerTool.ViewModel
 
         public void Send()
         {
-            if(TextSelected)
+            try
             {
-                _zmq.SendString(_sendMsg);
+                if (TextSelected)
+                {
+                    _zmq.SendString(_sendMsg);
+                }
+                else if (HexSelected)
+                {
+                    byte[] data = _sendMsg.Split(" ").Select(t => byte.Parse(t)).ToArray();
+                    _zmq.SendBytes(data);
+                }
             }
-            else if(HexSelected)
+            catch (Exception ex)
             {
-                byte[] data=_sendMsg.Split(" ").Select(t=>byte.Parse(t)).ToArray();
-                _zmq.SendBytes(data);
+                MessageBox.Show(ex.Message);
             }
         }
 

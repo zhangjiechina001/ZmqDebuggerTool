@@ -50,7 +50,7 @@ namespace ZmqDebuggerTool.Communication
             {
                 _reqSocket.SendFrame(data);
                 byte[] rec;
-                if(_reqSocket.TryReceiveFrameBytes(TimeSpan.FromMilliseconds(2000),out rec))
+                if(_reqSocket.TryReceiveFrameBytes(TimeSpan.FromMilliseconds(5000),out rec))
                 {
                     DataReceived(rec);
                 }
