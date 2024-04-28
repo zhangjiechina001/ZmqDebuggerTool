@@ -20,15 +20,18 @@ namespace CommnuiactionDebuggerTool.Views
     /// </summary>
     public partial class CommunicationView : UserControl
     {
-        public CommunicationView()
+        public CommunicationView(string tabHeader, object content)
         {
             InitializeComponent();
-            SetConnectView(new SerialPortConfigView());
+            SetConnectView(content);
+            TabHeader = tabHeader;
         }
 
-        public void SetConnectView(UserControl control)
+        public void SetConnectView(object control)
         {
             gbConnect.Content = control;
         }
+
+        public string TabHeader { get; set; }
     }
 }

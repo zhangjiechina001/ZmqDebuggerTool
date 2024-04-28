@@ -1,5 +1,7 @@
-﻿using System.Text;
+﻿using CommnuiactionDebuggerTool.Views;
+using System.Text;
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -23,6 +25,24 @@ namespace CommnuiactionDebuggerTool
 
         private void zmqDebug_Click(object sender, RoutedEventArgs e)
         {
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            tabItems.Items.Clear();
+            List<CommunicationView> views = new List<CommunicationView>
+            {
+                new CommunicationView("串口",new SerialPortConfigView()),
+                new CommunicationView("网口",new SocketConfigView())
+            };
+
+            foreach (CommunicationView view in views)
+            {
+                TabItem newItem = new TabItem();
+                newItem.Header = view.TabHeader;
+                newItem.Content = view;
+                tabItems.Items.Add(newItem);
+            }
         }
     }
 }

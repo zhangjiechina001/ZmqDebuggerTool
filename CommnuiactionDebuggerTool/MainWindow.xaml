@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:CommnuiactionDebuggerTool" 
         xmlns:views="clr-namespace:CommnuiactionDebuggerTool.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1000">
+        Title="ZJ通讯调试助手" Height="600" Width="1000" Loaded="Window_Loaded">
     <Window.Resources>
         <BitmapImage x:Key="imgKey" UriSource="pack://application:,,,/CommnuiactionDebuggerTool;component/Images/zmq.ico"/>
         <BitmapImage x:Key="imgTool" UriSource="pack://application:,,,/CommnuiactionDebuggerTool;component/Images/Tools-1种尺寸.ico"/>
         <!--UriSource可以使用相对路径-->
     </Window.Resources>
     
-    <Grid>
+    <Grid Margin="8">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="1*"/>
@@ -37,15 +37,7 @@
         </ToolBarTray>
         <Image Source="{StaticResource imgKey}" Height="40" Grid.Row="1"/>
 
-        <TabControl Grid.Row="1">
-            <TabItem Header="网口">
-                <views:CommunicationView/>
-            </TabItem>
-            <TabItem Header="串口">
-                <views:CommunicationView/>
-            </TabItem>
+        <TabControl x:Name="tabItems" Grid.Row="1">
         </TabControl>
-        
-       
     </Grid>
 </Window>
