@@ -34,6 +34,7 @@ namespace ZmqDebuggerTool.Communication
                         byte[] data;
                         if (_subSocket.TryReceiveFrameBytes(TimeSpan.FromMilliseconds(500),out data))
                         {
+                            
                             DataReceived(data);
                         }
                     }

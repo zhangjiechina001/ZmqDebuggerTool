@@ -41,7 +41,7 @@ namespace ZmqDebuggerTool.View
         {
             Dispatcher.Invoke(new Action(() =>
             {
-                string content= radRecText.IsChecked == true? Encoding.UTF8.GetString(obj): string.Join(" ", obj);
+                string content= GetFormatInfomation(obj);
                 if(IsSubscribe(content,txtTopic.Text))
                 {
                     txtRec.AppendText(content);
@@ -53,6 +53,19 @@ namespace ZmqDebuggerTool.View
                     txtRec.ScrollToEnd();
                 }
             }));
+        }
+
+        private string GetFormatInfomation(byte[] obj)
+        {
+            if(radRecText.IsChecked==true)
+            {
+                return Encoding.UTF8.GetString(obj);
+            }
+            else if(radRecHex.IsChecked==true)
+            {
+                return string.Join(" ", obj);
+            }
+            return obj.Length.ToString();
         }
 
         private bool IsSubscribe(string content,string topic)
