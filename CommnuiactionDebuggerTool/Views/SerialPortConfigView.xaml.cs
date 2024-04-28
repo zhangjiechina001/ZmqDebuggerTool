@@ -1,7 +1,9 @@
-﻿using System;
+﻿using CommnuiactionDebuggerTool.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,11 +20,16 @@ namespace CommnuiactionDebuggerTool.Views
     /// <summary>
     /// SerialPortConfigView.xaml 的交互逻辑
     /// </summary>
-    public partial class SerialPortConfigView : UserControl
+    public partial class SerialPortConfigView : UserControl, IConfigView
     {
         public SerialPortConfigView()
         {
             InitializeComponent();
+        }
+
+        public JsonObject GetCommunicationParam()
+        {
+            throw new NotImplementedException();
         }
     }
 }

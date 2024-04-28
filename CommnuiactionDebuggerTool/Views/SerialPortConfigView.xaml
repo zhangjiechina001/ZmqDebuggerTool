@@ -17,14 +17,5 @@
         <ComboBox Grid.Row="0" Height="21" Width="100"/>
         <Label Grid.Row="0" Grid.Column="0" Content="校验位:" VerticalContentAlignment="Center"/>
         <ComboBox Grid.Row="0" Height="21" Width="100"/>
-        <Button Grid.Row="0"
-        x:Name="btnConnect"
-        Content="绑定"
-        Grid.Column="2"
-        Width="80"
-        Height="21"
-        VerticalAlignment="Center"
-        VerticalContentAlignment="Center"
-        Margin="5"/>
     </StackPanel>
 </UserControl>

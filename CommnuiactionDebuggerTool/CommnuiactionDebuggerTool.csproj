@@ -3,15 +3,26 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Images\dog_-1种尺寸.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Images\Tools-1种尺寸.ico" />
     <None Remove="Images\zmq.ico" />
     <None Remove="Images\zmq.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SimpleTCP.Core" Version="1.0.4" />
+    <PackageReference Include="System.IO.Ports" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\dog_-1种尺寸.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -45,10 +56,6 @@
     <None Update="Tools_1.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Communications\" />
   </ItemGroup>
 
 </Project>

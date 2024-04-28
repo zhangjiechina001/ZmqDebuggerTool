@@ -16,6 +16,10 @@
 
         </Grid.ColumnDefinitions>
         <GroupBox x:Name="gbConnect"  Header="Connect" HorizontalAlignment="Left" Width="auto" Margin="5">
+            <StackPanel Orientation="Horizontal">
+                <local:ScoketConfigView/>
+                <Button Content="Connect Or Bind" Height="21" Margin="5"/>
+            </StackPanel>
         </GroupBox>
         <GroupBox Header="接收:" Grid.Row="1">
             <Grid>
