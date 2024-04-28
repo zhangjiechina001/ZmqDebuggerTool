@@ -23,6 +23,12 @@ namespace CommnuiactionDebuggerTool.Views
         public CommunicationView()
         {
             InitializeComponent();
+            SetConnectView(new SerialPortConfigView());
+        }
+
+        public void SetConnectView(UserControl control)
+        {
+            gbConnect.Content = control;
         }
     }
 }

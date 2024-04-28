@@ -15,46 +15,7 @@
         <Grid.ColumnDefinitions>
 
         </Grid.ColumnDefinitions>
-        <GroupBox Header="Connect" HorizontalAlignment="Left" Width="500" Margin="5">
-            <Grid  Margin="5">
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-
-                <Label Grid.Row="0"
-            Grid.Column="0"
-            Content="Address:"
-            Padding="0"
-               VerticalContentAlignment="Center"
-            Margin="0 0 10 0"/>
-
-                <TextBox Grid.Row="0"
-            x:Name="txtAddress"
-            Grid.Column="1"                                  
-            Grid.ColumnSpan="1"
-            Margin="5,0,5,0"
-            Height="21"
-            Text="{Binding Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            VerticalAlignment="Center"
-            VerticalContentAlignment="Center"/>
-
-        <Button Grid.Row="0"
-            x:Name="btnConnect"
-            Content="绑定"
-            Grid.Column="2"
-            Width="80"
-            Height="21"
-            VerticalAlignment="Center"
-            VerticalContentAlignment="Center"
-            Margin="0,0,0,0">
-                </Button>
-            </Grid>
+        <GroupBox x:Name="gbConnect"  Header="Connect" HorizontalAlignment="Left" Width="auto" Margin="5">
         </GroupBox>
         <GroupBox Header="接收:" Grid.Row="1">
             <Grid>

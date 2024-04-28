@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZmqDebuggerTool", "ZmqDebug
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PingTool", "PingTool\PingTool.csproj", "{7A393C33-34F7-41DA-BCFE-46EBC0668A18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommnuiactionDebuggerTool", "CommnuiactionDebuggerTool\CommnuiactionDebuggerTool.csproj", "{0EB0BF2B-3AEB-45FA-80BA-5476E790546B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommnuiactionDebuggerTool", "CommnuiactionDebuggerTool\CommnuiactionDebuggerTool.csproj", "{0EB0BF2B-3AEB-45FA-80BA-5476E790546B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

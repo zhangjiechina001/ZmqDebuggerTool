@@ -1,4 +1,8 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -9,20 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CommnuiactionDebuggerTool
+namespace CommnuiactionDebuggerTool.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// SerialPortConfigView.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SerialPortConfigView : UserControl
     {
-        public MainWindow()
+        public SerialPortConfigView()
         {
             InitializeComponent();
-        }
-
-        private void zmqDebug_Click(object sender, RoutedEventArgs e)
-        {
         }
     }
 }
