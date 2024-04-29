@@ -24,7 +24,7 @@
         </Grid.ColumnDefinitions>
         <GroupBox x:Name="gbConnect"  Header="Connect" HorizontalAlignment="Left" Width="auto" Margin="5">
             <StackPanel x:Name="spConfig" Orientation="Horizontal">
-                <Button Content="Connect Or Bind" Height="21" Margin="5"/>
+                <Button x:Name="btnConnect" Content="Connect Or Bind" Height="21" Margin="5" Click="btnConnect_Click"/>
             </StackPanel>
         </GroupBox>
         <GroupBox Header="接收:" Grid.Row="1">
@@ -49,7 +49,7 @@
                 <RadioButton x:Name="radRecText" Content="Text" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" IsChecked="True"/>
                 <RadioButton x:Name="radRecHex" Content="Hex" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="3" />
                 <RadioButton x:Name="radLength" Content="Length" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="4" />
-                <Button x:Name="btnClear" Content="clear" HorizontalAlignment="Left" VerticalAlignment="Center" Width="80" Height="21" Grid.Row="1" Grid.Column="5" Margin="15,0,0,0"/>
+                <Button x:Name="btnClear" Content="清空" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Height="21" Grid.Row="1" Grid.Column="5" Margin="15,2,0,0"/>
             </Grid>
         </GroupBox>
 
@@ -59,15 +59,15 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="26"/>
                 </Grid.RowDefinitions>
-                
+
                 <TextBox x:Name="txtSend" Grid.Row="0" Margin="5,5,5,5" Grid.ColumnSpan="5" Text="{Binding SendMsg,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <RadioButton Content="Text" Style="{StaticResource StackPanelMarginStyle}" HorizontalAlignment="Center" Width="50" VerticalAlignment="Center" IsChecked="{Binding TextSelected}"/>
-                    <RadioButton Content="Hex" Style="{StaticResource StackPanelMarginStyle}" HorizontalAlignment="Center" Width="50" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" IsChecked="{Binding HexSelected}"/>
+                    <RadioButton x:Name="chbSendText" Content="Text" Style="{StaticResource StackPanelMarginStyle}" HorizontalAlignment="Center" Width="50" VerticalAlignment="Center" IsChecked="{Binding TextSelected}"/>
+                    <RadioButton x:Name="chbSendHex" Content="Hex" Style="{StaticResource StackPanelMarginStyle}" HorizontalAlignment="Center" Width="50" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" IsChecked="{Binding HexSelected}"/>
                     <ComboBox x:Name="cmbCmds" Style="{StaticResource StackPanelMarginStyle}" Grid.Row="1"  Width="200" Height="21" HorizontalAlignment="Right" ItemsSource="{Binding OrderItems}" DisplayMemberPath="Title"/>
-                    <Button x:Name="btnSend" Style="{StaticResource StackPanelMarginStyle}" HorizontalAlignment="Center"  Content="发送" Grid.Row="1" Grid.Column="4"  Width="80" Height="21" Command="{Binding SendCommand}"/>
+                    <Button x:Name="btnSend" Style="{StaticResource StackPanelMarginStyle}" HorizontalAlignment="Center"  Content="发送" Grid.Row="1" Grid.Column="4"  Width="80" Height="21" Click="btnSend_Click"/>
                 </StackPanel>
-                
+
             </Grid>
 
         </GroupBox>

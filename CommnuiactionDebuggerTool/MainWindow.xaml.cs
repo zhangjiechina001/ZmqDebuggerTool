@@ -34,7 +34,7 @@ namespace CommnuiactionDebuggerTool
             List<CommunicationView> views = new List<CommunicationView>
             {
                 new CommunicationView(new TcpServer()),
-                new CommunicationView(new TcpServer())
+                new CommunicationView(new TcpClient())
             };
 
             foreach (CommunicationView view in views)

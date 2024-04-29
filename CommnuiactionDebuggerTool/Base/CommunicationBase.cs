@@ -15,7 +15,6 @@ namespace CommnuiactionDebuggerTool.Base
     {
         public event CommunicationDataReceivedEventHandler OnDataReceived;
         protected string _address;
-        private IConfigView _configView;
 
         public CommunicationBase()
         {
