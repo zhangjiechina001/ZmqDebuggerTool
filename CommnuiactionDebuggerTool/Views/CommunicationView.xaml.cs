@@ -1,5 +1,6 @@
 ﻿using CommnuiactionDebuggerTool.Base;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Utils.Config;
 
 namespace CommnuiactionDebuggerTool.Views
 {
@@ -104,13 +106,42 @@ namespace CommnuiactionDebuggerTool.Views
             string _sendMsg = txtSend.Text;
             if (chbSendHex.IsChecked == true)
             {
+                try
+                {
+                    byte[] data = _sendMsg.Split(" ").Select(t => byte.Parse(t)).ToArray();
+                    _comm.SendBytes(data);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
 
-                byte[] data = _sendMsg.Split(" ").Select(t => byte.Parse(t)).ToArray();
-                _comm.SendBytes(data);
             }
             else if(chbSendText.IsChecked == true)
             {
                 _comm.SendString(_sendMsg);
+            }
+        }
+
+        private void btnCrc_Click(object sender, RoutedEventArgs e)
+        {
+            string _sendMsg = txtSend.Text;
+            if (chbSendHex.IsChecked == true)
+            {
+                try
+                {
+                    byte[] data = _sendMsg.Split(" ").Select(t => Convert.ToByte(t,16)).ToArray();
+                    byte[] crc=BitConverter.GetBytes(CRC.CRC16_Check(data));
+                    List<byte> totalData=new List<byte>();
+                    totalData.AddRange(data);
+                    totalData.AddRange(crc);
+                    txtSend.Text = BitConverter.ToString(totalData.ToArray()).Replace("-"," ");
+                    _comm.SendBytes(data);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
     }

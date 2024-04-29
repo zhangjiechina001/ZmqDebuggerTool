@@ -65,7 +65,8 @@
                     <RadioButton x:Name="chbSendText" Content="Text" Style="{StaticResource StackPanelMarginStyle}" HorizontalAlignment="Center" Width="50" VerticalAlignment="Center" IsChecked="{Binding TextSelected}"/>
                     <RadioButton x:Name="chbSendHex" Content="Hex" Style="{StaticResource StackPanelMarginStyle}" HorizontalAlignment="Center" Width="50" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" IsChecked="{Binding HexSelected}"/>
                     <ComboBox x:Name="cmbCmds" Style="{StaticResource StackPanelMarginStyle}" Grid.Row="1"  Width="200" Height="21" HorizontalAlignment="Right" ItemsSource="{Binding OrderItems}" DisplayMemberPath="Title"/>
-                    <Button x:Name="btnSend" Style="{StaticResource StackPanelMarginStyle}" HorizontalAlignment="Center"  Content="发送" Grid.Row="1" Grid.Column="4"  Width="80" Height="21" Click="btnSend_Click"/>
+                    <Button x:Name="btnCrc" Style="{StaticResource StackPanelMarginStyle}" HorizontalAlignment="Center"  Content="CRC"  Width="80" Height="21" Click="btnCrc_Click"/>
+                    <Button x:Name="btnSend" Style="{StaticResource StackPanelMarginStyle}" HorizontalAlignment="Center"  Content="发送" Width="80" Height="21" Click="btnSend_Click"/>
                 </StackPanel>
 
             </Grid>

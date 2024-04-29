@@ -24,6 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Utils\Utils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\dog_-1种尺寸.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
