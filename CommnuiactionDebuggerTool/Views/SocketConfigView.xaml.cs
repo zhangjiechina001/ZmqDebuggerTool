@@ -1,7 +1,9 @@
-﻿using System;
+﻿using CommnuiactionDebuggerTool.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,11 +20,20 @@ namespace CommnuiactionDebuggerTool.Views
     /// <summary>
     /// ScoketConfigView.xaml 的交互逻辑
     /// </summary>
-    public partial class SocketConfigView : UserControl
+    public partial class ScoketConfigView : UserControl, IConfigView
     {
-        public SocketConfigView()
+        public ScoketConfigView()
         {
             InitializeComponent();
+        }
+
+        public JsonObject GetCommunicationParam()
+        {
+            JsonObject obj = new JsonObject()
+            {
+                { "Address",txtAddress.Text }
+            };
+            return obj;
         }
     }
 }
