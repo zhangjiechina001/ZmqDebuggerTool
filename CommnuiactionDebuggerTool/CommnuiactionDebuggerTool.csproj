@@ -5,13 +5,17 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>Images\dog_-1种尺寸.ico</ApplicationIcon>
+    <ApplicationIcon>Images\配置界面-debugger配置-1种尺寸.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Images\Tools-1种尺寸.ico" />
     <None Remove="Images\zmq.ico" />
     <None Remove="Images\zmq.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\配置界面-debugger配置-1种尺寸.ico" />
   </ItemGroup>
 
   <ItemGroup>

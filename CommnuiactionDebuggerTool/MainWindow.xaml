@@ -25,12 +25,11 @@
                         <Image x:Name="img1" Height="30" Source="{StaticResource imgKey}"/>
                         <TextBlock Margin="2">ZMQ调试</TextBlock>
                     </StackPanel>
-
                 </Button>
                 <Button Width="65">
                     <StackPanel Orientation="Vertical">
                         <Image  Height="30" Source="{StaticResource imgTool}"/>
-                        <TextBlock Margin="2">其它配置</TextBlock>
+                        <TextBlock Margin="2">其它工具</TextBlock>
                     </StackPanel>
                 </Button>
             </ToolBar>

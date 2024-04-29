@@ -16,7 +16,6 @@ namespace ZmqDebuggerTool.Communication
         public event Action<byte[]>? OnDataReceive;
 
         private PublisherSocket? _subSocket;
-        private ManualResetEvent _mutex = new ManualResetEvent(true);
         public ZmqPublisher()
         {
         }

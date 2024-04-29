@@ -20,9 +20,9 @@ namespace CommnuiactionDebuggerTool.Views
     /// <summary>
     /// ScoketConfigView.xaml 的交互逻辑
     /// </summary>
-    public partial class ScoketConfigView : UserControl, IConfigView
+    public partial class SocketConfigView : UserControl, IConfigView
     {
-        public ScoketConfigView()
+        public SocketConfigView()
         {
             InitializeComponent();
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommnuiactionDebuggerTool.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,16 +21,19 @@ namespace CommnuiactionDebuggerTool.Views
     /// </summary>
     public partial class CommunicationView : UserControl
     {
-        public CommunicationView(string tabHeader, object content)
+        public CommunicationView(CommunicationBase comm)
         {
             InitializeComponent();
-            SetConnectView(content);
-            TabHeader = tabHeader;
+            SetConnectView(comm.GetConfigView());
+            TabHeader = comm.GetCommunicationType();
         }
 
         public void SetConnectView(object control)
         {
-            gbConnect.Content = control;
+            if(control is UIElement ui)
+            {
+                spConfig.Children.Insert(0, ui);
+            }
         }
 
         public string TabHeader { get; set; }

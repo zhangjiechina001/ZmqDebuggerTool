@@ -31,13 +31,34 @@ namespace CommnuiactionDebuggerTool.Communications
 
         public override UserControl GetConfigView()
         {
-            return new ScoketConfigView();
+            return new SocketConfigView();
         }
 
         public override void BindOrConnect(JsonObject commParam)
         {
-            IPAddress iPAddress = IPAddress.Parse(commParam["address"].ToString());
-            _server.Start(iPAddress, 25);
+            string[] parts = commParam["Address"].ToString().Split(':');
+            string ipAddress = parts[0];
+            string port = parts[1];
+            IPAddress iPAddress = IPAddress.Parse(ipAddress);
+            int _port=int.Parse(port);
+            _server.Start(iPAddress, _port);
+        }
+
+        public override void SendBytes(byte[] data)
+        {
+            base.SendBytes(data);
+            _server.Broadcast(data);
+        }
+
+        public override void SendString(string data)
+        {
+            base.SendString(data);
+            _server.Broadcast(data);
+        }
+
+        public override string GetCommunicationType()
+        {
+            return "TCP服务端";
         }
     }
 }

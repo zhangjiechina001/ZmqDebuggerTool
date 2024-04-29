@@ -6,6 +6,13 @@
              xmlns:local="clr-namespace:CommnuiactionDebuggerTool.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <!-- 定义一个名为StackPanelMarginStyle的样式 -->
+        <Style x:Key="StackPanelMarginStyle" TargetType="FrameworkElement">
+            <!-- 设置默认的Margin -->
+            <Setter Property="Margin" Value="5,0,5,0"/>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -16,8 +23,7 @@
 
         </Grid.ColumnDefinitions>
         <GroupBox x:Name="gbConnect"  Header="Connect" HorizontalAlignment="Left" Width="auto" Margin="5">
-            <StackPanel Orientation="Horizontal">
-                <local:ScoketConfigView/>
+            <StackPanel x:Name="spConfig" Orientation="Horizontal">
                 <Button Content="Connect Or Bind" Height="21" Margin="5"/>
             </StackPanel>
         </GroupBox>
@@ -55,11 +61,11 @@
                 </Grid.RowDefinitions>
                 
                 <TextBox x:Name="txtSend" Grid.Row="0" Margin="5,5,5,5" Grid.ColumnSpan="5" Text="{Binding SendMsg,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <StackPanel Grid.Row="1" Orientation="Horizontal">
-                    <RadioButton Content="Text" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="1" IsChecked="{Binding TextSelected}"/>
-                    <RadioButton Content="Hex" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="2" IsChecked="{Binding HexSelected}"/>
-                    <ComboBox x:Name="cmbCmds" Grid.Row="1" Margin="0,0,5,0" Width="200" Height="21" HorizontalAlignment="Right" ItemsSource="{Binding OrderItems}" DisplayMemberPath="Title"/>
-                    <Button x:Name="btnSend" HorizontalAlignment="Center"  Content="发送" Grid.Row="1" Grid.Column="4"  Width="80" Height="21" Command="{Binding SendCommand}"/>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <RadioButton Content="Text" Style="{StaticResource StackPanelMarginStyle}" HorizontalAlignment="Center" Width="50" VerticalAlignment="Center" IsChecked="{Binding TextSelected}"/>
+                    <RadioButton Content="Hex" Style="{StaticResource StackPanelMarginStyle}" HorizontalAlignment="Center" Width="50" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" IsChecked="{Binding HexSelected}"/>
+                    <ComboBox x:Name="cmbCmds" Style="{StaticResource StackPanelMarginStyle}" Grid.Row="1"  Width="200" Height="21" HorizontalAlignment="Right" ItemsSource="{Binding OrderItems}" DisplayMemberPath="Title"/>
+                    <Button x:Name="btnSend" Style="{StaticResource StackPanelMarginStyle}" HorizontalAlignment="Center"  Content="发送" Grid.Row="1" Grid.Column="4"  Width="80" Height="21" Command="{Binding SendCommand}"/>
                 </StackPanel>
                 
             </Grid>

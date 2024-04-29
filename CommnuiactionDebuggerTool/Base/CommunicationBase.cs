@@ -37,5 +37,7 @@ namespace CommnuiactionDebuggerTool.Base
         {
             OnDataReceived?.Invoke(this, data);
         }
+
+        public abstract string GetCommunicationType();
     }
 }

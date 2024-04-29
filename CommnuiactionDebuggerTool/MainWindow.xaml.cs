@@ -1,4 +1,5 @@
-﻿using CommnuiactionDebuggerTool.Views;
+﻿using CommnuiactionDebuggerTool.Communications;
+using CommnuiactionDebuggerTool.Views;
 using System.Text;
 using System.Windows;
 using System.Windows.Automation;
@@ -32,8 +33,8 @@ namespace CommnuiactionDebuggerTool
             tabItems.Items.Clear();
             List<CommunicationView> views = new List<CommunicationView>
             {
-                new CommunicationView("串口",new SerialPortConfigView()),
-                new CommunicationView("网口",new SocketConfigView())
+                new CommunicationView(new TcpServer()),
+                new CommunicationView(new TcpServer())
             };
 
             foreach (CommunicationView view in views)
