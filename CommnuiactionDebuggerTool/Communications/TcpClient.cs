@@ -1,5 +1,6 @@
 ﻿using CommnuiactionDebuggerTool.Base;
 using CommnuiactionDebuggerTool.Views;
+using IniFileParser.Model;
 using SimpleTCP;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using Utils.Config;
 
 namespace CommnuiactionDebuggerTool.Communications
 {
@@ -55,7 +57,10 @@ namespace CommnuiactionDebuggerTool.Communications
         {
             if(_view == null )
             {
-                _view = new SocketConfigView();
+                SocketConfigView vi = new SocketConfigView();
+                IniData data= IniConfig.ReadInit("Configuration.ini");
+                vi.SetConfig(data, GetCommunicationType());
+                _view= vi;
             }
             return _view;
         }

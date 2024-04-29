@@ -1,7 +1,9 @@
 ﻿using CommnuiactionDebuggerTool.Base;
+using IniFileParser.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
@@ -26,6 +28,12 @@ namespace CommnuiactionDebuggerTool.Views
         {
             InitializeComponent();
         }
+        private string _sectionName;
+        public void SetConfig(IniData initData,string sectionName)
+        {
+            _sectionName = sectionName;
+            txtAddress.Text = initData[sectionName]["Address"];
+        }
 
         public JsonObject GetCommunicationParam()
         {
@@ -33,6 +41,7 @@ namespace CommnuiactionDebuggerTool.Views
             {
                 { "Address",txtAddress.Text }
             };
+
             return obj;
         }
     }

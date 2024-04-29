@@ -1,5 +1,6 @@
 ﻿using CommnuiactionDebuggerTool.Base;
 using CommnuiactionDebuggerTool.Views;
+using IniFileParser.Model;
 using SimpleTCP;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using Utils.Config;
 
 namespace CommnuiactionDebuggerTool.Communications
 {
@@ -28,10 +30,17 @@ namespace CommnuiactionDebuggerTool.Communications
         {
             DataReceived(e.Data);
         }
-
+        SocketConfigView _view;
         public override UserControl GetConfigView()
         {
-            return new SocketConfigView();
+            if (_view == null)
+            {
+                SocketConfigView vi = new SocketConfigView();
+                IniData data = IniConfig.ReadInit("Configuration.ini");
+                vi.SetConfig(data, GetCommunicationType());
+                _view= vi;
+            }
+            return _view;
         }
 
         public override void BindOrConnect(JsonObject commParam)

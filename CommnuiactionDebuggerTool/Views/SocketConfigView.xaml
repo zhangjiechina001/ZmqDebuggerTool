@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel  Orientation="Horizontal">
             <Label Grid.Row="0" Grid.Column="0" Content="Address:" VerticalContentAlignment="Center"/>
-            <TextBox Grid.Row="0" x:Name="txtAddress" Grid.Column="1" Grid.ColumnSpan="1" Margin="5" MinWidth="200" Height="21" Text="{Binding Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox Grid.Row="0" x:Name="txtAddress" Grid.Column="1" Grid.ColumnSpan="1" Margin="5" MinWidth="200" Height="21" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
         </StackPanel>
     </Grid>
 </UserControl>
