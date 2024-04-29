@@ -49,19 +49,15 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="26"/>
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="100"/>
-                </Grid.ColumnDefinitions>
+                
                 <TextBox x:Name="txtSend" Grid.Row="0" Margin="5,5,5,5" Grid.ColumnSpan="5" Text="{Binding SendMsg,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <RadioButton Content="Text" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="1" IsChecked="{Binding TextSelected}"/>
-                <RadioButton Content="Hex" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="2" IsChecked="{Binding HexSelected}"/>
-                <ComboBox x:Name="cmbCmds" Grid.Row="1" Margin="0,0,5,0" Width="200" Height="21" HorizontalAlignment="Right" ItemsSource="{Binding OrderItems}" DisplayMemberPath="Title"/>
-                <Button x:Name="btnSend" HorizontalAlignment="Center"  Content="发送" Grid.Row="1" Grid.Column="4"  Width="80" Height="21" Command="{Binding SendCommand}"/>
-
-
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <RadioButton Content="Text" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="1" IsChecked="{Binding TextSelected}"/>
+                    <RadioButton Content="Hex" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" Grid.Column="2" IsChecked="{Binding HexSelected}"/>
+                    <ComboBox x:Name="cmbCmds" Grid.Row="1" Margin="0,0,5,0" Width="200" Height="21" HorizontalAlignment="Right" ItemsSource="{Binding OrderItems}" DisplayMemberPath="Title"/>
+                    <Button x:Name="btnSend" HorizontalAlignment="Center"  Content="发送" Grid.Row="1" Grid.Column="4"  Width="80" Height="21" Command="{Binding SendCommand}"/>
+                </StackPanel>
+                
             </Grid>
 
         </GroupBox>
