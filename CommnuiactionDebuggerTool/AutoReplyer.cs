@@ -19,7 +19,7 @@ namespace CommnuiactionDebuggerTool
         {
             _comm= comm;
             _comm.OnDataReceived += Comm_OnDataReceived;
-            string fileName = "./Config/"+comm.GetCommunicationType() + ".json";
+            string fileName = "./Config/"+comm.Name + ".json";
             
             JsonConfig cfg= new JsonConfig(fileName);
             JsonNode nodes=cfg.GetSectionToken("Reply");

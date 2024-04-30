@@ -37,7 +37,7 @@ namespace CommnuiactionDebuggerTool.Communications
             if (_view == null)
             {
                 SocketConfigView vi = new SocketConfigView();
-                string address = InitManager.GetInstance().GetSection(GetCommunicationType(), "Address");
+                string address = InitManager.GetInstance().GetSection(Name, "Address");
                 vi.IPPort = address;
                 _view= vi;
             }
@@ -52,7 +52,7 @@ namespace CommnuiactionDebuggerTool.Communications
             IPAddress iPAddress = IPAddress.Parse(ipAddress);
             int _port = int.Parse(port);
             _server.Start(iPAddress, _port);
-            InitManager.GetInstance().SaveSection(GetCommunicationType(), "Address", _view.IPPort);
+            InitManager.GetInstance().SaveSection(Name, "Address", _view.IPPort);
         }
 
         public override void BindOrConnect(JsonObject commParam)
@@ -80,11 +80,6 @@ namespace CommnuiactionDebuggerTool.Communications
         {
             base.SendString(data);
             _server.Broadcast(data);
-        }
-
-        public override string GetCommunicationType()
-        {
-            return "TCP服务端";
         }
     }
 }

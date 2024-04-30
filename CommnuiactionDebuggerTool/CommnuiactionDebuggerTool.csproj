@@ -70,10 +70,10 @@
     <None Update="Configuration.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Config\TCP客户端.json">
+    <None Update="Config\TCP客户端1.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Config\TCP服务端.json">
+    <None Update="Config\TCP服务端1.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="ExtendExe\PingToolV1.7.exe">
