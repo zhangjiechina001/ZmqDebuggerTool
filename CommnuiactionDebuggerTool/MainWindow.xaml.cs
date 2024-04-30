@@ -1,5 +1,6 @@
 ﻿using CommnuiactionDebuggerTool.Communications;
 using CommnuiactionDebuggerTool.Views;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Automation;
@@ -26,6 +27,7 @@ namespace CommnuiactionDebuggerTool
 
         private void zmqDebug_Click(object sender, RoutedEventArgs e)
         {
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -44,6 +46,14 @@ namespace CommnuiactionDebuggerTool
                 newItem.Content = view;
                 tabItems.Items.Add(newItem);
             }
+        }
+
+        private void btnExtendPingTool_Click(object sender, RoutedEventArgs e)
+        {
+            Process process = new Process();
+            process.StartInfo.FileName = "./ExtendExe/PingToolV1.7.exe";
+            process.StartInfo.WorkingDirectory = "./ExtendExe";
+            process.Start();
         }
     }
 }

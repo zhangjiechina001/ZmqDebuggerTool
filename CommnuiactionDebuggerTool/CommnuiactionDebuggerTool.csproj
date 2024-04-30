@@ -6,9 +6,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Images\配置界面-debugger配置-1种尺寸.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\ip_set.ico" />
     <None Remove="Images\Tools-1种尺寸.ico" />
     <None Remove="Images\zmq.ico" />
     <None Remove="Images\zmq.png" />
@@ -16,6 +18,10 @@
 
   <ItemGroup>
     <Content Include="Images\配置界面-debugger配置-1种尺寸.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\ip_set.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -68,6 +74,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Config\TCP服务端.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ExtendExe\PingToolV1.7.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Tools_1.ico">

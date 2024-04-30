@@ -9,7 +9,7 @@
         Title="ZJ通讯调试助手" Height="800" Width="1200" Loaded="Window_Loaded">
     <Window.Resources>
         <BitmapImage x:Key="imgKey" UriSource="pack://application:,,,/CommnuiactionDebuggerTool;component/Images/zmq.ico"/>
-        <BitmapImage x:Key="imgTool" UriSource="pack://application:,,,/CommnuiactionDebuggerTool;component/Images/Tools-1种尺寸.ico"/>
+        <BitmapImage x:Key="imgTool" UriSource="pack://application:,,,/CommnuiactionDebuggerTool;component/Images/ip_set.ico"/>
         <!--UriSource可以使用相对路径-->
     </Window.Resources>
     
@@ -26,10 +26,10 @@
                         <TextBlock Margin="2">ZMQ调试</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button Width="65">
+                <Button x:Name="btnExtendPingTool" Width="65" Click="btnExtendPingTool_Click">
                     <StackPanel Orientation="Vertical">
                         <Image  Height="30" Source="{StaticResource imgTool}"/>
-                        <TextBlock Margin="2">其它工具</TextBlock>
+                        <TextBlock Margin="2">PingTool</TextBlock>
                     </StackPanel>
                 </Button>
             </ToolBar>
