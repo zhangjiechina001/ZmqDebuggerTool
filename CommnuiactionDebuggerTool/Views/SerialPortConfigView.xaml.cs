@@ -20,7 +20,7 @@ namespace CommnuiactionDebuggerTool.Views
     /// <summary>
     /// SerialPortConfigView.xaml 的交互逻辑
     /// </summary>
-    public partial class SerialPortConfigView : UserControl, IConfigView
+    public partial class SerialPortConfigView : UserControl
     {
         public SerialPortConfigView()
         {

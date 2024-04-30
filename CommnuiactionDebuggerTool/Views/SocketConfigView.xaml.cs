@@ -22,7 +22,7 @@ namespace CommnuiactionDebuggerTool.Views
     /// <summary>
     /// ScoketConfigView.xaml 的交互逻辑
     /// </summary>
-    public partial class SocketConfigView : UserControl, IConfigView
+    public partial class SocketConfigView : UserControl
     {
         CommunicationBase _comm;
         public SocketConfigView()

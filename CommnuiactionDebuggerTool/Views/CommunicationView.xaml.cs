@@ -61,31 +61,46 @@ namespace CommnuiactionDebuggerTool.Views
                 if(chbLength.IsChecked == true)
                 {
                     string len=Encoding.UTF8.GetString(obj).Length.ToString();
-                    AddLine("<<", len);
+                    AddLog("<<", len);
                 }
                 else
                 {
-                    AddLine("<<", obj);
+                    AddLog("<<", obj);
                 }
             }));
         }
 
-        private void AddLine(string recType, byte[] data)
+        private void AddLog(string recType, byte[] data)
         {
             string content = chbIsHex.IsChecked == true? data.GetFormatString(true): Encoding.UTF8.GetString(data);
-            AddLine(recType, content);
+            AddLog(recType, content);
         }
 
-        private void AddLine(string recType, string data)
+        private void AddLog(string recType, string data)
         {
             string content = data;
             if (IsSubscribe(content, txtTopic.Text))
             {
-                string line = string.Format("{0} {1}\r\n{2}", recType, DateTime.Now.ToString("HH:mm:ss.fff"), content);
-                txtRec.AppendText(line);
-                txtRec.AppendText(Environment.NewLine);
+                string head = string.Format("{0} {1}", recType, DateTime.Now.ToString("HH:mm:ss.fff"));
+                AddLine(head,content,Brushes.Green);
             }
             txtRec.ScrollToEnd();
+        }
+
+        private void AddLine(string line, string line2,SolidColorBrush color)
+        {
+            // 创建一个新的段落
+            Paragraph paragraph = new Paragraph();
+            // 创建一个新的文本块
+            Span span = new Span(new Run(line+Environment.NewLine));
+            paragraph.Inlines.Add(span);
+
+            Span span2 = new Span(new Run(line2));
+            span2.Foreground = color;
+            paragraph.Inlines.Add(span2);
+
+            // 将段落添加到 RichTextBox 中
+            txtRec.Document.Blocks.Add(paragraph);
         }
 
         private bool IsSubscribe(string content, string topic)
@@ -123,22 +138,23 @@ namespace CommnuiactionDebuggerTool.Views
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
             string _sendMsg = txtSend.Text;
-            if (chbIsHex.IsChecked == true)
+            try
             {
-                try
+                if (chbIsHex.IsChecked == true)
                 {
                     byte[] data = _sendMsg.Split(" ").Select(t => Convert.ToByte(t,16)).ToArray();
                     _comm.SendBytes(data);
-                    AddLine(">>", data);
+                    AddLog(">>", data);
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
+                    _comm.SendString(_sendMsg);
+                    AddLog(">>", _sendMsg);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                _comm.SendString(_sendMsg);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -179,7 +195,7 @@ namespace CommnuiactionDebuggerTool.Views
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
-            txtRec.Clear();
+            txtRec.Document.Blocks.Clear();
         }
 
         private void btnDisConnect_Click(object sender, RoutedEventArgs e)
