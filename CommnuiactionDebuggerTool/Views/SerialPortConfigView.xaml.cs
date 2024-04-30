@@ -31,5 +31,10 @@ namespace CommnuiactionDebuggerTool.Views
         {
             throw new NotImplementedException();
         }
+
+        public void SetCommunicationParam(JsonObject param)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

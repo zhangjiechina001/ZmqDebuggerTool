@@ -1,4 +1,5 @@
 ﻿using CommnuiactionDebuggerTool.Base;
+using CommnuiactionDebuggerTool.Extend;
 using IniFileParser.Model;
 using System;
 using System.Collections;
@@ -13,6 +14,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -38,10 +40,8 @@ namespace CommnuiactionDebuggerTool.Views
             SetConnectView(_configView);
             TabHeader = comm.GetCommunicationType();
             comm.OnDataReceived += Zmq_OnDataReceived;
-            chbSendHex.IsChecked = true;
             _cycleTimer = new DispatcherTimer();
             _cycleTimer.Tick += Timer_Tick;
-            IniData data=IniConfig.ReadInit("Configuration.ini");
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -58,33 +58,34 @@ namespace CommnuiactionDebuggerTool.Views
         {
             Dispatcher.Invoke(new Action(() =>
             {
-                AddLine("接收", obj);
+                if(chbLength.IsChecked == true)
+                {
+                    string len=Encoding.UTF8.GetString(obj).Length.ToString();
+                    AddLine("接收", len);
+                }
+                else
+                {
+                    AddLine("接收", obj);
+                }
             }));
         }
 
         private void AddLine(string recType, byte[] data)
         {
-            string content = GetFormatInfomation(data);
-            if(IsSubscribe(content, txtTopic.Text))
+            string content = chbIsHex.IsChecked == true? data.GetFormatString(true): Encoding.UTF8.GetString(data);
+            AddLine(recType, content);
+        }
+
+        private void AddLine(string recType, string data)
+        {
+            string content = data;
+            if (IsSubscribe(content, txtTopic.Text))
             {
-                string line = string.Format("{0}:{1}\r\n{2}", recType, DateTime.Now, content);
+                string line = string.Format("{0} {1}\r\n{2}", recType, DateTime.Now.ToString("HH:mm:ss.fff"), content);
                 txtRec.AppendText(line);
                 txtRec.AppendText(Environment.NewLine);
             }
             txtRec.ScrollToEnd();
-        }
-
-        private string GetFormatInfomation(byte[] obj)
-        {
-            if (radRecText.IsChecked == true)
-            {
-                return Encoding.UTF8.GetString(obj);
-            }
-            else if (radRecHex.IsChecked == true)
-            {
-                return string.Join(" ", obj);
-            }
-            return obj.Length.ToString();
         }
 
         private bool IsSubscribe(string content, string topic)
@@ -100,6 +101,7 @@ namespace CommnuiactionDebuggerTool.Views
 
         public void SetConnectView(object control)
         {
+            IConfigView cv=control as IConfigView;
             if(control is UIElement ui)
             {
                 spConfig.Children.Insert(0, ui);
@@ -112,6 +114,10 @@ namespace CommnuiactionDebuggerTool.Views
             {
                 JsonObject obj = (_configView as IConfigView).GetCommunicationParam();
                 _comm.BindOrConnect(obj);
+                foreach (var item in obj)
+                {
+                    InitManager.GetInstance().SaveSection(_comm.GetCommunicationType(), item.Key, item.Value.ToString());
+                }
             }
             catch (Exception ex)
             {
@@ -122,11 +128,11 @@ namespace CommnuiactionDebuggerTool.Views
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
             string _sendMsg = txtSend.Text;
-            if (chbSendHex.IsChecked == true)
+            if (chbIsHex.IsChecked == true)
             {
                 try
                 {
-                    byte[] data = _sendMsg.Split(" ").Select(t => byte.Parse(t)).ToArray();
+                    byte[] data = _sendMsg.Split(" ").Select(t => Convert.ToByte(t,16)).ToArray();
                     _comm.SendBytes(data);
                     AddLine("发送", data);
                 }
@@ -134,9 +140,8 @@ namespace CommnuiactionDebuggerTool.Views
                 {
                     MessageBox.Show(ex.Message);
                 }
-
             }
-            else if(chbSendText.IsChecked == true)
+            else
             {
                 _comm.SendString(_sendMsg);
             }
@@ -144,17 +149,17 @@ namespace CommnuiactionDebuggerTool.Views
 
         private void btnCrc_Click(object sender, RoutedEventArgs e)
         {
-            string _sendMsg = txtSend.Text;
-            if (chbSendHex.IsChecked == true)
+            if (chbIsHex.IsChecked == true)
             {
                 try
                 {
+                    string _sendMsg = txtSend.Text;
                     byte[] data = _sendMsg.Split(" ").Select(t => Convert.ToByte(t,16)).ToArray();
                     byte[] crc=BitConverter.GetBytes(CRC.CRC16_Check(data));
                     List<byte> totalData=new List<byte>();
                     totalData.AddRange(data);
                     totalData.AddRange(crc);
-                    txtSend.Text = BitConverter.ToString(totalData.ToArray()).Replace("-"," ");
+                    txtSend.Text = totalData.ToArray().GetFormatString(true);
                 }
                 catch (Exception ex)
                 {
@@ -175,7 +180,6 @@ namespace CommnuiactionDebuggerTool.Views
             {
                 _cycleTimer.Stop();
             }
-            
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)

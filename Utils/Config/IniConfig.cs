@@ -16,5 +16,11 @@ namespace Utils.Config
             IniData data=parser.ReadFile(fileName);
             return data;
         }
+
+        public static void SaveInit(string fileName,IniData data)
+        {
+            var parser = new IniFileParser.IniFileParser();
+            parser.WriteFile(fileName, data);
+        }
     }
 }

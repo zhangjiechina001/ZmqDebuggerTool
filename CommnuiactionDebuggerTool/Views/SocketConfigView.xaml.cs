@@ -44,5 +44,10 @@ namespace CommnuiactionDebuggerTool.Views
 
             return obj;
         }
+
+        public void SetCommunicationParam(JsonObject param)
+        {
+            txtAddress.Text = param["Address"].ToString();
+        }
     }
 }

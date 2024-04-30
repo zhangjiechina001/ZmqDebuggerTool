@@ -10,5 +10,7 @@ namespace CommnuiactionDebuggerTool.Base
     public interface IConfigView
     {
         JsonObject GetCommunicationParam();
+
+        void SetCommunicationParam(JsonObject param);
     }
 }

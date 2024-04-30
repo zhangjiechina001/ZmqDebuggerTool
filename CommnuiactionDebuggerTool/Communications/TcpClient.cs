@@ -58,8 +58,6 @@ namespace CommnuiactionDebuggerTool.Communications
             if(_view == null )
             {
                 SocketConfigView vi = new SocketConfigView();
-                IniData data= IniConfig.ReadInit("Configuration.ini");
-                vi.SetConfig(data, GetCommunicationType());
                 _view= vi;
             }
             return _view;
