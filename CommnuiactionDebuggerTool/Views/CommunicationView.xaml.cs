@@ -1,5 +1,4 @@
 ﻿using CommnuiactionDebuggerTool.Base;
-using CommnuiactionDebuggerTool.Extend;
 using IniFileParser.Model;
 using System;
 using System.Collections;
@@ -21,6 +20,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using Utils.Config;
+using Utils.Extend;
 
 namespace CommnuiactionDebuggerTool.Views
 {
@@ -36,12 +36,14 @@ namespace CommnuiactionDebuggerTool.Views
         {
             InitializeComponent();
             _comm = comm;
+            _comm.OnDataReceived += Zmq_OnDataReceived;
+
             _configView = comm.GetConfigView();
             SetConnectView(_configView);
             TabHeader = comm.GetCommunicationType();
-            comm.OnDataReceived += Zmq_OnDataReceived;
             _cycleTimer = new DispatcherTimer();
             _cycleTimer.Tick += Timer_Tick;
+            _autoReply = new AutoReplyer(comm);
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -68,6 +70,7 @@ namespace CommnuiactionDebuggerTool.Views
                     AddLog("<<", obj);
                 }
             }));
+
         }
 
         private void AddLog(string recType, byte[] data)
@@ -142,7 +145,7 @@ namespace CommnuiactionDebuggerTool.Views
             {
                 if (chbIsHex.IsChecked == true)
                 {
-                    byte[] data = _sendMsg.Split(" ").Select(t => Convert.ToByte(t,16)).ToArray();
+                    byte[] data = _sendMsg.GetBytesFromLine(true);
                     _comm.SendBytes(data);
                     AddLog(">>", data);
                 }
@@ -202,6 +205,12 @@ namespace CommnuiactionDebuggerTool.Views
         {
             _comm.DisConnect();
             btnConnect.IsEnabled = true;
+        }
+
+        AutoReplyer _autoReply;
+        private void chbIsReply_Checked(object sender, RoutedEventArgs e)
+        {
+            _autoReply.IsReply = chbIsReply.IsChecked.Value;
         }
     }
 }

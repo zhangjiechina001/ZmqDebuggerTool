@@ -10,7 +10,7 @@
         <!-- 定义一个名为StackPanelMarginStyle的样式 -->
         <Style x:Key="StackPanelMarginStyle" TargetType="Control">
             <!-- 设置默认的Margin -->
-            <Setter Property="Margin" Value="5,0,5,0"/> 
+            <Setter Property="Margin" Value="5,0,5,0"/>
             <Setter Property="VerticalContentAlignment"  Value="Center"/>
         </Style>
     </UserControl.Resources>
@@ -31,24 +31,19 @@
         </GroupBox>
         <GroupBox Header="接收:" Grid.Row="1">
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="5*"/>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="100"/>
-                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="35"/>
                 </Grid.RowDefinitions>
 
-                <RichTextBox x:Name="txtRec" Margin="2"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" VerticalScrollBarVisibility="Visible" FontSize="14"/> 
-                <Label Content="订阅主题(空格分割)：" Grid.Row="1" VerticalAlignment="Center"/>
-                <TextBox x:Name="txtTopic" Margin="2" Height="21"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1"/>
-                <CheckBox x:Name="chbLength" Content="Length" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="4" />
-                <Button x:Name="btnClear" Content="清空" Click="btnClear_Click" Width="80" Height="21" Grid.Row="1" Grid.Column="5" Margin="15,2,0,0"/>
+                <RichTextBox x:Name="txtRec" Margin="2"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" VerticalScrollBarVisibility="Visible" FontSize="14"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1">
+                    <Label Content="订阅主题(空格分割)：" Grid.Row="1" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtTopic" Margin="5" Height="21" Width="150"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1"/>
+                    <CheckBox x:Name="chbLength" Content="Length" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="4" />
+                    <Button x:Name="btnClear" Content="清空" Click="btnClear_Click" Width="80" Height="21" Grid.Row="1" Grid.Column="5" Margin="15,2,0,0"/>
+                </StackPanel>
+
             </Grid>
         </GroupBox>
 
@@ -64,7 +59,8 @@
                     <ComboBox x:Name="cmbCmds" Style="{StaticResource StackPanelMarginStyle}" Grid.Row="1"  Width="200" Height="21" HorizontalAlignment="Right" ItemsSource="{Binding OrderItems}" DisplayMemberPath="Title"/>
                     <Button x:Name="btnCrc" Style="{StaticResource StackPanelMarginStyle}" HorizontalAlignment="Center"  Content="CRC"  Width="80" Height="21" Click="btnCrc_Click"/>
                     <Label Content="发送间隔(ms):" VerticalAlignment="Center"/>
-                    <TextBox x:Name="txtTimsSpan"  Style="{StaticResource StackPanelMarginStyle}" Text="1000"  Width="100" Margin="10,0,10,0" Height="21"/>
+                    <TextBox x:Name="txtTimsSpan"  Style="{StaticResource StackPanelMarginStyle}" Text="1000"  Width="80" Margin="10,0,10,0" Height="21"/>
+                    <CheckBox x:Name="chbIsReply" Style="{StaticResource StackPanelMarginStyle}" Content="自动回复" Checked="chbIsReply_Checked"/>
                     <CheckBox x:Name="chbTimer" Content="定时发送" VerticalAlignment="Center" Checked="chbTimer_Checked"/>
                     <CheckBox x:Name="chbIsHex" Style="{StaticResource StackPanelMarginStyle}" Content="Hex" VerticalAlignment="Center" Checked="chbTimer_Checked"/>
                     <Button x:Name="btnSend" Style="{StaticResource StackPanelMarginStyle}" HorizontalAlignment="Center"  Content="发送" Width="80" Height="21" Click="btnSend_Click" Margin="3"/>

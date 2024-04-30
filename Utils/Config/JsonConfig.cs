@@ -17,6 +17,16 @@ namespace Utils.Config
             _obj = JsonObject.Parse(jsonContent).AsObject() ;
         }
 
+        public JsonConfig(string fileName)
+        {
+            if(!File.Exists(fileName))
+            {
+                throw new IOException($"{fileName} not found!");
+            }
+            string jsonContent = File.ReadAllText(fileName);
+            _obj = JsonObject.Parse(jsonContent).AsObject();
+        }
+
         public JsonObject GetSectionObj(string key)
         {
             var obj=_obj[key];

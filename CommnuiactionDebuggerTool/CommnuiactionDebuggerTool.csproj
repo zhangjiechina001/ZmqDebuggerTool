@@ -64,6 +64,12 @@
     <None Update="Configuration.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Config\TCP客户端.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Config\TCP服务端.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Tools_1.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
