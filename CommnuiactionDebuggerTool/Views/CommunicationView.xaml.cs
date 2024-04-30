@@ -61,11 +61,11 @@ namespace CommnuiactionDebuggerTool.Views
                 if(chbLength.IsChecked == true)
                 {
                     string len=Encoding.UTF8.GetString(obj).Length.ToString();
-                    AddLine("接收", len);
+                    AddLine("<<", len);
                 }
                 else
                 {
-                    AddLine("接收", obj);
+                    AddLine("<<", obj);
                 }
             }));
         }
@@ -101,7 +101,6 @@ namespace CommnuiactionDebuggerTool.Views
 
         public void SetConnectView(object control)
         {
-            IConfigView cv=control as IConfigView;
             if(control is UIElement ui)
             {
                 spConfig.Children.Insert(0, ui);
@@ -112,12 +111,8 @@ namespace CommnuiactionDebuggerTool.Views
         {
             try
             {
-                JsonObject obj = (_configView as IConfigView).GetCommunicationParam();
-                _comm.BindOrConnect(obj);
-                foreach (var item in obj)
-                {
-                    InitManager.GetInstance().SaveSection(_comm.GetCommunicationType(), item.Key, item.Value.ToString());
-                }
+                _comm.BindOrConnect();
+                btnConnect.IsEnabled = false;
             }
             catch (Exception ex)
             {
@@ -134,7 +129,7 @@ namespace CommnuiactionDebuggerTool.Views
                 {
                     byte[] data = _sendMsg.Split(" ").Select(t => Convert.ToByte(t,16)).ToArray();
                     _comm.SendBytes(data);
-                    AddLine("发送", data);
+                    AddLine(">>", data);
                 }
                 catch (Exception ex)
                 {
@@ -185,6 +180,12 @@ namespace CommnuiactionDebuggerTool.Views
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
             txtRec.Clear();
+        }
+
+        private void btnDisConnect_Click(object sender, RoutedEventArgs e)
+        {
+            _comm.DisConnect();
+            btnConnect.IsEnabled = true;
         }
     }
 }

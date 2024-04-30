@@ -24,10 +24,12 @@ namespace CommnuiactionDebuggerTool.Views
     /// </summary>
     public partial class SocketConfigView : UserControl, IConfigView
     {
+        CommunicationBase _comm;
         public SocketConfigView()
         {
             InitializeComponent();
         }
+
         private string _sectionName;
         public void SetConfig(IniData initData,string sectionName)
         {
@@ -44,6 +46,13 @@ namespace CommnuiactionDebuggerTool.Views
 
             return obj;
         }
+
+        public string IPPort 
+        {
+            get { return txtAddress.Text; }
+            set { txtAddress.Text = value; }
+        }
+
 
         public void SetCommunicationParam(JsonObject param)
         {

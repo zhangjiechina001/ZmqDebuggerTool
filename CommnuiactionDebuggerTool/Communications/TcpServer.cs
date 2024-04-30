@@ -30,17 +30,29 @@ namespace CommnuiactionDebuggerTool.Communications
         {
             DataReceived(e.Data);
         }
+
         SocketConfigView _view;
         public override UserControl GetConfigView()
         {
             if (_view == null)
             {
                 SocketConfigView vi = new SocketConfigView();
-                IniData data = IniConfig.ReadInit("Configuration.ini");
-                vi.SetConfig(data, GetCommunicationType());
+                string address = InitManager.GetInstance().GetSection(GetCommunicationType(), "Address");
+                vi.IPPort = address;
                 _view= vi;
             }
             return _view;
+        }
+
+        public override void BindOrConnect()
+        {
+            string[] parts = _view.IPPort.Split(':');
+            string ipAddress = parts[0];
+            string port = parts[1];
+            IPAddress iPAddress = IPAddress.Parse(ipAddress);
+            int _port = int.Parse(port);
+            _server.Start(iPAddress, _port);
+            InitManager.GetInstance().SaveSection(GetCommunicationType(), "Address", _view.IPPort);
         }
 
         public override void BindOrConnect(JsonObject commParam)
@@ -51,6 +63,11 @@ namespace CommnuiactionDebuggerTool.Communications
             IPAddress iPAddress = IPAddress.Parse(ipAddress);
             int _port=int.Parse(port);
             _server.Start(iPAddress, _port);
+        }
+
+        public override void DisConnect()
+        {
+            _server.Stop();
         }
 
         public override void SendBytes(byte[] data)

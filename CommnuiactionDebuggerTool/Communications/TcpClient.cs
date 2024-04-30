@@ -29,12 +29,26 @@ namespace CommnuiactionDebuggerTool.Communications
             base.DataReceived(e.Data);
         }
 
+        public override void BindOrConnect()
+        {
+            string[] parts = _view.IPPort.Split(':');
+            string ipAddress = parts[0];
+            string port = parts[1];
+            _client.Connect(ipAddress, int.Parse(port));
+            InitManager.GetInstance().SaveSection(GetCommunicationType(), "Address", _view.IPPort);
+        }
+
         public override void BindOrConnect(JsonObject commParam)
         {
             string[] parts = commParam["Address"].ToString().Split(':');
             string ipAddress = parts[0];
             string port = parts[1];
             _client.Connect(ipAddress, int.Parse(port));
+        }
+
+        public override void DisConnect()
+        {
+            _client.Disconnect();
         }
 
         public override void SendBytes(byte[] data)
@@ -52,13 +66,15 @@ namespace CommnuiactionDebuggerTool.Communications
             return "TCP客户端";
         }
 
-        UserControl _view;
+        SocketConfigView _view;
         public override UserControl GetConfigView()
         {
             if(_view == null )
             {
                 SocketConfigView vi = new SocketConfigView();
-                _view= vi;
+                string address = InitManager.GetInstance().GetSection(GetCommunicationType(), "Address");
+                vi.IPPort = address;
+                _view = vi;
             }
             return _view;
         }

@@ -20,9 +20,11 @@ namespace CommnuiactionDebuggerTool.Base
         {
         }
 
-        public virtual void BindOrConnect(JsonObject commParam)
-        {
-        }
+        public abstract void BindOrConnect(JsonObject commParam);
+
+        public abstract void BindOrConnect();
+
+        public abstract void DisConnect();
 
         public abstract UserControl GetConfigView();
   
