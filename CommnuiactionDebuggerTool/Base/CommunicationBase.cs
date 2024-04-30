@@ -20,6 +20,8 @@ namespace CommnuiactionDebuggerTool.Base
         {
         }
 
+        public string Name { get; set; }
+
         public abstract void BindOrConnect(JsonObject commParam);
 
         public abstract void BindOrConnect();

@@ -15,6 +15,9 @@ namespace CommnuiactionDebuggerTool
         {
             _iniData = IniConfig.ReadInit("Configuration.ini");
         }
+
+        public IniData IniData => _iniData;
+
         public string GetSection(string sectionName,string key)
         {
             return _iniData[sectionName][key];

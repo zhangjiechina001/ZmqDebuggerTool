@@ -40,7 +40,7 @@ namespace CommnuiactionDebuggerTool.Views
 
             _configView = comm.GetConfigView();
             SetConnectView(_configView);
-            TabHeader = comm.GetCommunicationType();
+            TabHeader = comm.Name;
             _cycleTimer = new DispatcherTimer();
             _cycleTimer.Tick += Timer_Tick;
             _autoReply = new AutoReplyer(comm);
