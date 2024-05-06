@@ -31,7 +31,6 @@
             </ToolBar>
         </ToolBarTray>
 
-
         <TabControl x:Name="tabItems" Grid.Row="1">
         </TabControl>
     </Grid>

@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="NetMQ" Version="4.0.1.10" />
     <PackageReference Include="SimpleTCP.Core" Version="1.0.4" />
     <PackageReference Include="System.IO.Ports" Version="6.0.0" />
   </ItemGroup>
@@ -39,9 +40,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\dog_-1种尺寸.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="Images\modbus.ico" />
     <Resource Include="Images\modbus_client.ico" />
     <Resource Include="Images\modbus_server.ico" />
