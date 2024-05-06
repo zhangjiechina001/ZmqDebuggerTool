@@ -1,0 +1,228 @@
+﻿{
+  "Reply": [
+    {
+      "Title": "设置参数_采集光谱",
+      "Message": {
+        "Receive": "5d 01 04 e0 41",
+        "Reply": "5d 2e 04 00 00 01 28 01 99 99 01 01 00 00 00 00 61 d9 22 00 00 00 00 00 00 00 a0 41 27 d9 68 42 39 6d 49 42 06 57 04 42 00 00 0c 42 76 7c 06 42 91 ae"
+      }
+    }
+  ],
+  "SendOrder": [
+    {
+      "Title": "设置参数_单次测量",
+      "Message": {
+        "theme": "setMeasureParams",
+        "param": {
+          "measureMode": "单次测量",
+          "sampleInformation": "JGSC-BTF",
+          "sampleCount": 100
+        }
+      }
+    },
+    {
+      "Title": "设置参数_采集光谱",
+      "Message": {
+        "theme": "setMeasureParams",
+        "param": {
+          "measureMode": "采集光谱",
+          "sampleInformation": "JGSC-BTF",
+          "sampleCount": 100
+        }
+      }
+    },
+    {
+      "Title": "启动测量",
+      "Message": {
+        "theme": "measureControl",
+        "param": "startMeasure"
+      }
+    },
+    {
+      "Title": "停止测量",
+      "Message": {
+        "theme": "measureControl",
+        "param": "stopMeasure"
+      }
+    },
+    {
+      "Title": "导轨_设置速度",
+      "Message": {
+        "theme": "subDeviceControl",
+        "deviceType": "MovePlatform",
+        "command": "SetVelocity",
+        "param": 123
+      }
+    },
+    {
+      "Title": "导轨_相对移动",
+      "Message": {
+        "theme": "subDeviceControl",
+        "deviceType": "MovePlatform",
+        "command": "RelativeMove",
+        "param": 1.5
+      }
+    },
+    {
+      "Title": "导轨_绝对移动",
+      "Message": {
+        "theme": "subDeviceControl",
+        "deviceType": "MovePlatform",
+        "command": "AbsoluteMove",
+        "param": 1.5
+      }
+    },
+    {
+      "Title": "导轨_重置零位",
+      "Message": {
+        "theme": "subDeviceControl",
+        "deviceType": "MovePlatform",
+        "command": "ReturnToZero",
+        "param": ""
+      }
+    },
+    {
+      "Title": "导轨_获取状态",
+      "Message": {
+        "theme": "subDeviceControl",
+        "deviceType": "MovePlatform",
+        "command": "GetStateItems"
+      }
+    },
+    {
+      "Title": "光谱仪_参数获取",
+      "Message": {
+        "theme": "subDeviceControl",
+        "deviceType": "SpectroMeter",
+        "command": "GetParam",
+        "param": ""
+      }
+    },
+    {
+      "Title": "光谱仪_参数设置",
+      "Message": {
+        "theme": "subDeviceControl",
+        "deviceType": "SpectroMeter",
+        "command": "SetParam",
+        "param": {
+          "id": "7SP20135678",
+          "IntegralTime": 123.2,
+          "DelayTime": 123.2,
+          "AverageTimes": 1,
+          "IsMasterChannel": true
+        }
+      }
+    },
+    {
+      "Title": "激光器_频率设置",
+      "Message": {
+        "theme": "subDeviceControl",
+        "deviceType": "Laser",
+        "command": "SetParam",
+        "param": {
+          "Frequency": 5
+        }
+      }
+    },
+    {
+      "Title": "激光器_能量设置",
+      "Message": {
+        "theme": "subDeviceControl",
+        "deviceType": "Laser",
+        "command": "SetParam",
+        "param": {
+          "EnergyLevel": 6
+        }
+      }
+    },
+    {
+      "Title": "激光器_使能设置",
+      "Message": {
+        "theme": "subDeviceControl",
+        "deviceType": "Laser",
+        "command": "SetParam",
+        "param": {
+          "Enable": true
+        }
+      }
+    },
+    {
+      "Title": "激光器_状态获取",
+      "Message": {
+        "theme": "subDeviceControl",
+        "deviceType": "Laser",
+        "command": "GetParam"
+      }
+    },
+    {
+      "Title": "IO_状态获取",
+      "Message": {
+        "theme": "subDeviceControl",
+        "deviceType": "IOModule",
+        "command": "GetParam"
+      }
+    },
+    {
+      "Title": "IO_状态设置",
+      "Message": {
+        "theme": "subDeviceControl",
+        "deviceType": "IOModule",
+        "command": "SetParam",
+        "param": {
+          "报警": true
+        }
+      }
+    },
+    {
+      "Title": "报警使能_获取",
+      "Message": {
+        "theme": "subDeviceControl",
+        "deviceType": "Alarm",
+        "command": "GetParam",
+        "param": {
+          "报警": true
+        }
+      }
+    },
+    {
+      "Title": "报警使能_设置",
+      "Message": {
+        "theme": "subDeviceControl",
+        "deviceType": "Alarm",
+        "command": "SetParam",
+        "param": {
+          "EnablePressure": true,
+          "EnableSolenoid": true,
+          "EnableLeakage": true,
+          "EnableTemperature": true
+        }
+      }
+    },
+    {
+      "Title": "测量_参数设置",
+      "Message": {
+        "theme": "subDeviceControl",
+        "deviceType": "Other",
+        "command": "SetParam",
+        "param": {
+          "SampleName": "JJSS-BT-1#",
+          "MeasureMode": "OnlySample/DirectMeasure/MeltSoldJudgmentMeasure/ClassifyMeasure",
+          "SampleMode": "SpecifiedDuration/SpecifiedTimes",
+          "DurationSecond": 3,
+          "SampleTimes": 500,
+          "IsUnattended": false,
+          "IntervalSecond": 30,
+          "PreablationDurationSecond": 0
+        }
+      }
+    },
+    {
+      "Title": "测量_参数获取",
+      "Message": {
+        "theme": "subDeviceControl",
+        "deviceType": "Other",
+        "command": "GetParam"
+      }
+    }
+  ]
+}

@@ -21,16 +21,6 @@ namespace ZmqDebuggerTool.Communication
         {
         }
 
-        public string Send(string content)
-        {
-            if(_reqSocket != null)
-            {
-                _reqSocket.SendFrame(content);
-                return _reqSocket.ReceiveFrameString();
-            }
-            return "_reqSocket is null";
-        }
-
         public override void BindOrConnect()
         {
             _address = _view.IPPort;
@@ -54,7 +44,7 @@ namespace ZmqDebuggerTool.Communication
             {
                 _reqSocket.SendFrame(data);
                 byte[] rec;
-                if(_reqSocket.TryReceiveFrameBytes(TimeSpan.FromMilliseconds(5000),out rec))
+                if(_reqSocket.TryReceiveFrameBytes(TimeSpan.FromMilliseconds(1000),out rec))
                 {
                     DataReceived(rec);
                 }

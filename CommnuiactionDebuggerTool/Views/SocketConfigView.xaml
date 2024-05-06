@@ -8,7 +8,7 @@
              d:DesignHeight="50" d:DesignWidth="800">
     <Grid>
         <StackPanel  Orientation="Horizontal">
-            <Label Grid.Row="0" Grid.Column="0" Content="Address:" VerticalContentAlignment="Center"/>
+            <Label Grid.Row="0" Grid.Column="0" Content="IPPort:" VerticalContentAlignment="Center"/>
             <TextBox Grid.Row="0" x:Name="txtAddress" Grid.Column="1" Grid.ColumnSpan="1" Margin="5" MinWidth="200" Height="21" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
         </StackPanel>
     </Grid>
