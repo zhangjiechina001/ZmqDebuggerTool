@@ -12,6 +12,9 @@
   <ItemGroup>
     <None Remove="Images\debug-1种尺寸.ico" />
     <None Remove="Images\ip_set.ico" />
+    <None Remove="Images\modbus.ico" />
+    <None Remove="Images\modbus_client.ico" />
+    <None Remove="Images\modbus_server.ico" />
     <None Remove="Images\Tools-1种尺寸.ico" />
     <None Remove="Images\zmq.ico" />
     <None Remove="Images\zmq.png" />
@@ -39,6 +42,9 @@
     <Resource Include="Images\dog_-1种尺寸.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\modbus.ico" />
+    <Resource Include="Images\modbus_client.ico" />
+    <Resource Include="Images\modbus_server.ico" />
   </ItemGroup>
 
   <ItemGroup>

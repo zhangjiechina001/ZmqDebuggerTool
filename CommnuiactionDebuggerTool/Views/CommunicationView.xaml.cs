@@ -21,6 +21,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using Utils.Config;
 using Utils.Extend;
+using ZmqDebuggerTool.ViewModel;
 
 namespace CommnuiactionDebuggerTool.Views
 {
@@ -32,6 +33,7 @@ namespace CommnuiactionDebuggerTool.Views
         private readonly CommunicationBase _comm;
         private readonly UserControl _configView;
         private readonly DispatcherTimer _cycleTimer;
+        private readonly AutoReplyer _autoReply;
         public CommunicationView(CommunicationBase comm)
         {
             InitializeComponent();
@@ -46,7 +48,6 @@ namespace CommnuiactionDebuggerTool.Views
             _autoReply = new AutoReplyer(comm);
             cmbCmds.ItemsSource = _autoReply.SendItems;
             cmbCmds.DisplayMemberPath = nameof(OrderItem.Title);
-
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -73,7 +74,6 @@ namespace CommnuiactionDebuggerTool.Views
                     AddLog("<<", obj);
                 }
             }));
-
         }
 
         private void AddLog(string recType, byte[] data)
@@ -168,14 +168,14 @@ namespace CommnuiactionDebuggerTool.Views
         {
             if(chbIsHex.IsChecked == false)
             {
-                MessageBox.Show("请选择Hex发送！");
+                MessageBox.Show("请选择Hex发送！","错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             try
             {
                 string _sendMsg = txtSend.Text;
-                byte[] data = _sendMsg.Split(" ").Select(t => Convert.ToByte(t,16)).ToArray();
+                byte[] data = _sendMsg.Split(" ").Select(t => Convert.ToByte(t,10)).ToArray();
                 byte[] crc=BitConverter.GetBytes(CRC.CRC16_Check(data));
                 List<byte> totalData=new List<byte>();
                 totalData.AddRange(data);
@@ -184,7 +184,7 @@ namespace CommnuiactionDebuggerTool.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message,"Error",MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -213,7 +213,7 @@ namespace CommnuiactionDebuggerTool.Views
             btnConnect.IsEnabled = true;
         }
 
-        AutoReplyer _autoReply;
+        
         private void chbIsReply_Checked(object sender, RoutedEventArgs e)
         {
             _autoReply.IsReply = chbIsReply.IsChecked.Value;

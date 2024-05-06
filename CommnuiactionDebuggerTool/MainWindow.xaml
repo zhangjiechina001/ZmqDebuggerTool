@@ -10,6 +10,8 @@
     <Window.Resources>
         <BitmapImage x:Key="imgKey" UriSource="pack://application:,,,/CommnuiactionDebuggerTool;component/Images/zmq.ico"/>
         <BitmapImage x:Key="imgTool" UriSource="pack://application:,,,/CommnuiactionDebuggerTool;component/Images/ip_set.ico"/>
+        <BitmapImage x:Key="imgMbClient" UriSource="pack://application:,,,/CommnuiactionDebuggerTool;component/Images/modbus.ico"/>
+        <BitmapImage x:Key="imgMbServer" UriSource="pack://application:,,,/CommnuiactionDebuggerTool;component/Images/modbus.ico"/>
         <!--UriSource可以使用相对路径-->
     </Window.Resources>
     
@@ -30,6 +32,18 @@
                     <StackPanel Orientation="Vertical">
                         <Image  Height="30" Source="{StaticResource imgTool}"/>
                         <TextBlock Margin="2">PingTool</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnExtendModbusClient" Width="95">
+                    <StackPanel Orientation="Vertical">
+                        <Image  Height="30" Source="{StaticResource imgMbClient}"/>
+                        <TextBlock Margin="2">Modbus Slave</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnExtendModbusServer" Width="95">
+                    <StackPanel Orientation="Vertical">
+                        <Image  Height="30" Source="{StaticResource imgMbServer}"/>
+                        <TextBlock Margin="2">Modbus Poll</TextBlock>
                     </StackPanel>
                 </Button>
             </ToolBar>

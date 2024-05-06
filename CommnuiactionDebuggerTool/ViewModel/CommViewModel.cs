@@ -24,7 +24,7 @@ namespace ZmqDebuggerTool.ViewModel
             TextSelected = true;
         }
 
-        public CommunicationBase Zmq => _zmq;
+        public CommunicationBase Comm => _zmq;
 
         private string _address= "tcp://*:3000";
         public string Address 
