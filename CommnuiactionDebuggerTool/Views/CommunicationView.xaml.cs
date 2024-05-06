@@ -175,7 +175,7 @@ namespace CommnuiactionDebuggerTool.Views
             try
             {
                 string _sendMsg = txtSend.Text;
-                byte[] data = _sendMsg.Split(" ").Select(t => Convert.ToByte(t,10)).ToArray();
+                byte[] data = _sendMsg.GetBytesFromLine(true);
                 byte[] crc=BitConverter.GetBytes(CRC.CRC16_Check(data));
                 List<byte> totalData=new List<byte>();
                 totalData.AddRange(data);

@@ -1,6 +1,8 @@
 ﻿using CommnuiactionDebuggerTool.Base;
+using CommnuiactionDebuggerTool.Communications;
 using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Nodes;
@@ -14,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Utils.Extend;
 
 namespace CommnuiactionDebuggerTool.Views
 {
@@ -25,16 +28,43 @@ namespace CommnuiactionDebuggerTool.Views
         public SerialPortConfigView()
         {
             InitializeComponent();
+            Init();
         }
 
-        public JsonObject GetCommunicationParam()
+        private void Init()
         {
-            throw new NotImplementedException();
+            cmbPortName.ItemsSource = SerialPort.GetPortNames().ToList();
+            cmbBaudRate.ItemsSource = new List<int> { 4800, 9600, 19200, 38400, 115200 };
+            cmbDataBits.ItemsSource = new List<int> { 8,7,6,5};
+            var stopBits = EnumExtend.GetEnumValues<StopBits>();
+            stopBits.Remove(StopBits.None);
+            cmbStopBits.ItemsSource = stopBits;
+            cmbParity.ItemsSource = EnumExtend.GetEnumValues<Parity>();
         }
 
-        public void SetCommunicationParam(JsonObject param)
+        public SerialPortItem SerialPortItem 
         {
-            throw new NotImplementedException();
+            get { return GetSerialPortItem(); }
+            set { SetView(value); }
+        }
+        public void SetView(SerialPortItem info)
+        {
+            cmbPortName.SelectedItem = info.SerialPortName;
+            cmbBaudRate.SelectedItem= info.BaudRate;
+            cmbDataBits.SelectedItem=info.DataBits;
+            cmbStopBits.SelectedItem=info.StopBits;
+            cmbParity.SelectedItem=info.Parity;
+        }
+
+        private SerialPortItem GetSerialPortItem()
+        {
+            SerialPortItem it=new SerialPortItem();
+            it.SerialPortName = cmbPortName.SelectedItem as string;
+            it.BaudRate = (int)cmbBaudRate.SelectedItem;
+            it.DataBits=(int)cmbDataBits.SelectedItem;
+            it.StopBits = (StopBits)cmbStopBits.SelectedItem;
+            it.Parity= (Parity)cmbParity.SelectedItem;
+            return it;
         }
     }
 }

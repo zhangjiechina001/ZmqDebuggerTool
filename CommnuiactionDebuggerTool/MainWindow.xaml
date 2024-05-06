@@ -22,28 +22,10 @@
         </Grid.RowDefinitions>
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar HorizontalAlignment="Left" Grid.Row="0">
-                <Button x:Name="zmqDebug" Width="65" Click="zmqDebug_Click">
-                    <StackPanel Orientation="Vertical">
-                        <Image x:Name="img1" Height="30" Source="{StaticResource imgKey}"/>
-                        <TextBlock Margin="2">ZMQ调试</TextBlock>
-                    </StackPanel>
-                </Button>
                 <Button x:Name="btnExtendPingTool" Width="65" Click="btnExtendPingTool_Click">
                     <StackPanel Orientation="Vertical">
                         <Image  Height="30" Source="{StaticResource imgTool}"/>
                         <TextBlock Margin="2">PingTool</TextBlock>
-                    </StackPanel>
-                </Button>
-                <Button x:Name="btnExtendModbusClient" Width="95">
-                    <StackPanel Orientation="Vertical">
-                        <Image  Height="30" Source="{StaticResource imgMbClient}"/>
-                        <TextBlock Margin="2">Modbus Slave</TextBlock>
-                    </StackPanel>
-                </Button>
-                <Button x:Name="btnExtendModbusServer" Width="95">
-                    <StackPanel Orientation="Vertical">
-                        <Image  Height="30" Source="{StaticResource imgMbServer}"/>
-                        <TextBlock Margin="2">Modbus Poll</TextBlock>
                     </StackPanel>
                 </Button>
             </ToolBar>
