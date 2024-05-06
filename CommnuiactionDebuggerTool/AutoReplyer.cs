@@ -15,6 +15,7 @@ namespace CommnuiactionDebuggerTool
     {
         CommunicationBase _comm;
         List<OrderItem> _items;
+        List<OrderItem> _sendItems;
         public AutoReplyer(CommunicationBase comm)
         {
             _comm= comm;
@@ -24,9 +25,16 @@ namespace CommnuiactionDebuggerTool
             JsonConfig cfg= new JsonConfig(fileName);
             JsonNode nodes=cfg.GetSectionToken("Reply");
             _items=OrderItem.Parse(nodes);
+            JsonNode sendNodes = cfg.GetSectionToken("SendOrder");
+            _sendItems=OrderItem.Parse(sendNodes);
         }
 
         public bool IsReply { get; set; } = false;
+
+        public List<OrderItem> SendItems 
+        {
+            get { return _sendItems; }
+        }
 
         private void Comm_OnDataReceived(object sender, byte[] data)
         {

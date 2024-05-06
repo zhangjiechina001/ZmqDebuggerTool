@@ -34,16 +34,9 @@ namespace CommnuiactionDebuggerTool.Communications
             string[] parts = _view.IPPort.Split(':');
             string ipAddress = parts[0];
             string port = parts[1];
+            _client.TimeOut = TimeSpan.FromMilliseconds(1000);
             _client.Connect(ipAddress, int.Parse(port));
             InitManager.GetInstance().SaveSection(Name, "Address", _view.IPPort);
-        }
-
-        public override void BindOrConnect(JsonObject commParam)
-        {
-            string[] parts = commParam["Address"].ToString().Split(':');
-            string ipAddress = parts[0];
-            string port = parts[1];
-            _client.Connect(ipAddress, int.Parse(port));
         }
 
         public override void DisConnect()

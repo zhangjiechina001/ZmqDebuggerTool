@@ -10,7 +10,7 @@
     }
   ],
   "ResponseAddress": "tcp://*:3000",
-  "ResponseOrders": [
+  "SendOrder": [
     {
       "Title": "准备测量",
       "Message": "120 156 99 96 0 3 190 192 99 145 236 185 222 19 207 51 232 129 32 0 38 145 4 40"

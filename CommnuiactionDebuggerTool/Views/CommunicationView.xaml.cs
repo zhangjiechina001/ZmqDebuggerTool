@@ -44,6 +44,9 @@ namespace CommnuiactionDebuggerTool.Views
             _cycleTimer = new DispatcherTimer();
             _cycleTimer.Tick += Timer_Tick;
             _autoReply = new AutoReplyer(comm);
+            cmbCmds.ItemsSource = _autoReply.SendItems;
+            cmbCmds.DisplayMemberPath = nameof(OrderItem.Title);
+
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -163,22 +166,25 @@ namespace CommnuiactionDebuggerTool.Views
 
         private void btnCrc_Click(object sender, RoutedEventArgs e)
         {
-            if (chbIsHex.IsChecked == true)
+            if(chbIsHex.IsChecked == false)
             {
-                try
-                {
-                    string _sendMsg = txtSend.Text;
-                    byte[] data = _sendMsg.Split(" ").Select(t => Convert.ToByte(t,16)).ToArray();
-                    byte[] crc=BitConverter.GetBytes(CRC.CRC16_Check(data));
-                    List<byte> totalData=new List<byte>();
-                    totalData.AddRange(data);
-                    totalData.AddRange(crc);
-                    txtSend.Text = totalData.ToArray().GetFormatString(true);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                MessageBox.Show("请选择Hex发送！");
+                return;
+            }
+
+            try
+            {
+                string _sendMsg = txtSend.Text;
+                byte[] data = _sendMsg.Split(" ").Select(t => Convert.ToByte(t,16)).ToArray();
+                byte[] crc=BitConverter.GetBytes(CRC.CRC16_Check(data));
+                List<byte> totalData=new List<byte>();
+                totalData.AddRange(data);
+                totalData.AddRange(crc);
+                txtSend.Text = totalData.ToArray().GetFormatString(true);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -211,6 +217,14 @@ namespace CommnuiactionDebuggerTool.Views
         private void chbIsReply_Checked(object sender, RoutedEventArgs e)
         {
             _autoReply.IsReply = chbIsReply.IsChecked.Value;
+        }
+
+        private void cmbCmds_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(cmbCmds.SelectedItem is OrderItem orderItem)
+            {
+                txtSend.Text = orderItem.Message.ToString();
+            }
         }
     }
 }

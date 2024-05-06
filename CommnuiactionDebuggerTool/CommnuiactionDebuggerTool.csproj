@@ -5,11 +5,12 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>Images\配置界面-debugger配置-1种尺寸.ico</ApplicationIcon>
+    <ApplicationIcon>Images\debug-1种尺寸.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\debug-1种尺寸.ico" />
     <None Remove="Images\ip_set.ico" />
     <None Remove="Images\Tools-1种尺寸.ico" />
     <None Remove="Images\zmq.ico" />
@@ -17,10 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Images\配置界面-debugger配置-1种尺寸.ico" />
+    <Content Include="Images\debug-1种尺寸.ico" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\debug-1种尺寸.ico" />
     <Resource Include="Images\ip_set.ico" />
   </ItemGroup>
 

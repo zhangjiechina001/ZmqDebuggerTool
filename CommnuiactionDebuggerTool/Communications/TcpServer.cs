@@ -50,19 +50,8 @@ namespace CommnuiactionDebuggerTool.Communications
             string ipAddress = parts[0];
             string port = parts[1];
             IPAddress iPAddress = IPAddress.Parse(ipAddress);
-            int _port = int.Parse(port);
-            _server.Start(iPAddress, _port);
+            _server.Start(iPAddress, int.Parse(port));
             InitManager.GetInstance().SaveSection(Name, "Address", _view.IPPort);
-        }
-
-        public override void BindOrConnect(JsonObject commParam)
-        {
-            string[] parts = commParam["Address"].ToString().Split(':');
-            string ipAddress = parts[0];
-            string port = parts[1];
-            IPAddress iPAddress = IPAddress.Parse(ipAddress);
-            int _port=int.Parse(port);
-            _server.Start(iPAddress, _port);
         }
 
         public override void DisConnect()
