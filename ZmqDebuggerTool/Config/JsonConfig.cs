@@ -23,6 +23,12 @@ namespace ZmqDebuggerTool.Config
             return obj.ToObject<JObject>();
         }
 
+        public JArray GetSectionArray(string key)
+        {
+            var obj = _obj[key];
+            return obj.ToObject<JArray>();
+        }
+
         public JToken GetSectionToken(string key)
         {
             var obj = _obj[key];

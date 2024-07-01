@@ -4,7 +4,6 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
 	<SatelliteResourceLanguages>zh-Hans</SatelliteResourceLanguages>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
@@ -13,6 +12,10 @@
     <ApplicationIcon>zmq.ico</ApplicationIcon>
 	
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\updatelog.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="zmq.ico" />
@@ -28,6 +31,9 @@
       <None Update="appsettings.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+      <None Update="ConfigFile\release.log">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
       <None Update="zlib1.dll">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
@@ -40,5 +46,9 @@
     <ItemGroup>
       <Folder Include="Properties\PublishProfiles\" />
       <Folder Include="ViewModel\Base\" />
+    </ItemGroup>
+	
+    <ItemGroup>
+      <Resource Include="Images\updatelog.ico" />
     </ItemGroup>
 </Project>

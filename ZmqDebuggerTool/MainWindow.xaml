@@ -8,23 +8,34 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ShowInTaskbar="True"
-        Title="Zmq调试工具" Height="600" Width="900" Loaded="Window_Loaded">
-    <TabControl Margin="10">
-        <TabItem Header="Zmq Request">
-            <view:ZmqView x:Name="viewReq"/>
-        </TabItem>
-        <TabItem Header="Zmq Response">
-            <view:ZmqView x:Name="viewRes"/>
-        </TabItem>
-        <TabItem Header="Zmq Subscribe">
-            <view:ZmqView x:Name="viewSub"/>
-        </TabItem>
-        <TabItem Header="Zmq Publish">
-            <view:ZmqView x:Name="viewPub"/>
-        </TabItem>
-        <TabItem Header="Zlib Test">
-            <view:ZlibTestView x:Name="zlibTest"/>
-        </TabItem>
-    </TabControl>
-    
+        Title="Zmq调试工具" Height="650" Width="900" Loaded="Window_Loaded">
+
+    <Window.Resources>
+        <BitmapImage x:Key="imgUpdateLog" UriSource="pack://application:,,,/ZmqDebuggerTool;component/Images/updatelog.ico"/>
+        <!--UriSource可以使用相对路径-->
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <ToolBarTray Grid.ColumnSpan="2">
+            <ToolBar  Width="auto">
+                <Button x:Name="btnUpdateLog" Height="60" Width="70" Click="btnUpdateLog_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource imgUpdateLog}"  Width="32" Height="32"/>
+                        <TextBlock Text="更新日志" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+
+        <TabControl x:Name="tab" Margin="10" Grid.Row="1">
+            <TabItem Header="Zlib Test">
+                <view:ZlibTestView x:Name="zlibTest"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
 </Window>

@@ -59,6 +59,7 @@ namespace ZmqDebuggerTool.ViewModel
             try
             {
                 _zmq.BindOrConnect(_address);
+                GlobalVar.GetInstance().SetValue(Title, "Address", _address);
             }
             catch (Exception ex)
             {
@@ -115,6 +116,8 @@ namespace ZmqDebuggerTool.ViewModel
         public bool HexSelected { get; set; }
 
         public ObservableCollection<OrderItem> OrderItems { get; set; }
+
+        public string Title { get; set; }
         #endregion
     }
 }

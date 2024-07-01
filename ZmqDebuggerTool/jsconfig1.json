@@ -51,8 +51,8 @@
     },
     {
       "Address": "tcp://localhost:3000",
-      "Title": "ZmqResponse",
-      "Type": "ZmqResponse",
+      "Title": "ZmqRequest",
+      "Type": "ZmqRequest",
       "Orders": [
         {
           "Title": "准备测量",
@@ -70,8 +70,8 @@
     },
     {
       "Address": "tcp://localhost:3000",
-      "Title": "ZmqSubscriber",
-      "Type": "ZmqSubscriber",
+      "Title": "ZmqRequest",
+      "Type": "ZmqRequest",
       "Orders": [
         {
           "Title": "准备测量",
@@ -89,8 +89,8 @@
     },
     {
       "Address": "tcp://localhost:3000",
-      "Title": "ZmqPublisher",
-      "Type": "ZmqPublisher",
+      "Title": "ZmqRequest",
+      "Type": "ZmqRequest",
       "Orders": [
         {
           "Title": "准备测量",

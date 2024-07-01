@@ -56,7 +56,8 @@
 
                 <TextBox x:Name="txtSend" Margin="2"/>
                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <ComboBox x:Name="cmbCmds" Style="{StaticResource StackPanelMarginStyle}" Grid.Row="1"  Width="200" Height="21" HorizontalAlignment="Right" SelectionChanged="cmbCmds_SelectionChanged"/>
+                    <Label Content="发送指令:" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="cmbCmds" Style="{StaticResource StackPanelMarginStyle}" Grid.Row="1"  Width="150" Height="21" HorizontalAlignment="Right" SelectionChanged="cmbCmds_SelectionChanged"/>
                     <Button x:Name="btnCrc" Style="{StaticResource StackPanelMarginStyle}" HorizontalAlignment="Center"  Content="CRC"  Width="80" Height="21" Click="btnCrc_Click"/>
                     <Label Content="发送间隔(ms):" VerticalAlignment="Center"/>
                     <TextBox x:Name="txtTimsSpan"  Style="{StaticResource StackPanelMarginStyle}" Text="1000"  Width="80" Margin="10,0,10,0" Height="21"/>

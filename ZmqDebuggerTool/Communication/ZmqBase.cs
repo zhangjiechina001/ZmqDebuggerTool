@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ZmqDebuggerTool.Communication
 {
-    public class ZmqBase
+    public abstract class ZmqBase
     {
         public event Action<byte[]>? OnDataReceived;
         protected string? _address;
