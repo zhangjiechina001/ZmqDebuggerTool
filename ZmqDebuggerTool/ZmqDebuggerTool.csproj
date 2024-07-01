@@ -14,6 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\update.ico" />
     <None Remove="Images\updatelog.ico" />
   </ItemGroup>
 
@@ -49,6 +50,7 @@
     </ItemGroup>
 	
     <ItemGroup>
+      <Resource Include="Images\update.ico" />
       <Resource Include="Images\updatelog.ico" />
     </ItemGroup>
 </Project>

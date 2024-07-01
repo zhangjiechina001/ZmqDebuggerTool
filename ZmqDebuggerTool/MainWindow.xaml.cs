@@ -104,5 +104,34 @@ namespace ZmqDebuggerTool
             // 启动进程
             Process process = Process.Start(startInfo);
         }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            string url = "https://github.com/zhangjiechina001/ZmqDebuggerTool/releases";
+            OpenUrlInEdge(url);
+        }
+
+        static void OpenUrlInEdge(string url)
+        {
+            try
+            {
+                // 使用Edge打开URL
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = "msedge.exe",
+                    Arguments = url,
+                    UseShellExecute = true
+                });
+            }
+            catch (System.ComponentModel.Win32Exception noBrowser)
+            {
+                if (noBrowser.ErrorCode == -2147467259)
+                    Console.WriteLine("Edge not found. " + noBrowser.Message);
+            }
+            catch (System.Exception other)
+            {
+                Console.WriteLine("An error occurred: " + other.Message);
+            }
+        }
     }
 }

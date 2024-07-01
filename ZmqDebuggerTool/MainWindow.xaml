@@ -12,6 +12,7 @@
 
     <Window.Resources>
         <BitmapImage x:Key="imgUpdateLog" UriSource="pack://application:,,,/ZmqDebuggerTool;component/Images/updatelog.ico"/>
+        <BitmapImage x:Key="imgUpdate" UriSource="pack://application:,,,/ZmqDebuggerTool;component/Images/update.ico"/>
         <!--UriSource可以使用相对路径-->
     </Window.Resources>
 
@@ -26,6 +27,12 @@
                 <Button x:Name="btnUpdateLog" Height="60" Width="70" Click="btnUpdateLog_Click">
                     <StackPanel Orientation="Vertical">
                         <Image Source="{StaticResource imgUpdateLog}"  Width="32" Height="32"/>
+                        <TextBlock Text="更新日志" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnUpdate" Height="60" Width="70" Click="btnUpdate_Click">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{StaticResource imgUpdate}"  Width="32" Height="32"/>
                         <TextBlock Text="更新日志" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Button>
