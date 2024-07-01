@@ -33,9 +33,6 @@
         </ToolBarTray>
 
         <TabControl x:Name="tab" Margin="10" Grid.Row="1">
-            <TabItem Header="Zlib Test">
-                <view:ZlibTestView x:Name="zlibTest"/>
-            </TabItem>
         </TabControl>
     </Grid>
 </Window>

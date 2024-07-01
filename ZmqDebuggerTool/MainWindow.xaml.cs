@@ -45,6 +45,10 @@ namespace ZmqDebuggerTool
                 {
                     model.Address = iterObj["Address"].ToString();
                 }
+                else
+                {
+                    model.Address = GlobalVar.GetInstance().GetValue(title, "Address");
+                }
 
                 model.Title = title;
                 view.SetDataContext(model);
@@ -55,15 +59,6 @@ namespace ZmqDebuggerTool
                 tab.Items.Add(ti);
                 
             }
-
-            viewReq.SetDataContext(CreateModel<ZmqRequest>("RequestOrders", "RequestAddress"));
-
-            viewRes.SetDataContext(CreateModel<ZmqResponse>("ResponseOrders", "ResponseAddress"));
-
-            viewSub.SetDataContext(CreateModel<ZmqSubscriber>("PublishOrders", "SubscriberAddress"));
-
-            viewPub.SetDataContext(CreateModel<ZmqPublisher>("PublishOrders", "PublisherAddress"));
-
             DataContext = this;
         }
 
@@ -73,15 +68,6 @@ namespace ZmqDebuggerTool
             ZmqBase zmq = CreateZmqEntity(zmqType);
             var orders= OrderItem.Parse(obj["Orders"]);
             var model= new ZmqViewModel(orders, zmq);
-            return model;
-        }
-
-
-        private ZmqViewModel CreateModel<T>(string orderKey,string addressKey) where T : new()
-        {
-            var orders = OrderItem.Parse(_configuration.GetSectionToken(orderKey));
-            var model = new ZmqViewModel(orders, ((new T()) as ZmqBase)!);
-            model.Address = _configuration.GetSectionString(addressKey);
             return model;
         }
 
